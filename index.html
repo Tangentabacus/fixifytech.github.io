@@ -34,7 +34,7 @@
       border-left: none;
       border-right: none;
       padding: 4rem 2rem;
-      margin-top: 2rem;
+      margin: 2rem auto 1rem;
     }
 
     @media (min-width: 700px) {
@@ -117,7 +117,13 @@
     .container {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 6rem 1rem 2rem;
+      padding: 4rem 1rem 2rem;
+    }
+    .section-separator {
+      margin: 4rem auto 2rem;
+      max-width: 1140px;
+      border-top: 2px dashed var(--accent-color);
+      opacity: 0.4;
     }
 
     h2 {
@@ -301,6 +307,19 @@
       100% { background-position: 0% 50%; }
     }
 
+    .full-span {
+      grid-column: 1 / -1;
+      max-width: 100%;
+    }
+
+    @media (min-width: 900px) {
+      .full-span {
+        max-width: calc(2 * (50% - 1rem) + 2rem); /* match two grid cards width plus spacing */
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
     .cta::before {
       content: "";
       position: absolute;
@@ -364,8 +383,8 @@
   <header>
     <!-- Logo Placeholder -->
     <div class="logo-container">
-      <img src="path/to/logo.png" alt="Fixify Tech Logo" style="max-height: 80px; margin-bottom: 1rem;" />
-      <h1>Fixify Tech</h1>
+      <img src="media/logo.png" alt="Fixify Tech Logo" style="max-height: 80px; margin-bottom: 1rem;" onerror="this.style.display='none'; document.getElementById('logo-title').style.display = 'block';" onload="document.getElementById('logo-title').style.display = 'none';" />
+      <h1 id="logo-title" style="margin: 0;">Fixify Tech</h1>
       <p class="slogan">Computer Repair and IT Solutions — Anchorage, Alaska</p>
     </div>
   </header>
@@ -383,10 +402,11 @@
     <p style="font-size: 1.2rem; font-weight: 500; max-width: 700px; margin: 0 auto 1.5rem;">
       Need help with your tech? Reach out today — no commitment required. We’re here to simplify the complicated, fix the broken, and keep your business connected.
     </p>
-    <form action="https://formsubmit.co/contact@fixifytech.com" method="POST">
+    <form action="https://formsubmit.co/tangentabacus@gmail.com" method="POST">
       <input type="hidden" name="_honey" style="display:none">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://fixifytech.github.io/thank-you.html">
+      <input type="hidden" name="_subject" value="🚨 New Lead from Fixify Tech Website!" />
       <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
         <input type="text" name="name" placeholder="Your Name" required style="padding: 0.75rem; border-radius: 5px; border: none;">
         <input type="email" name="email" placeholder="Your Email" required style="padding: 0.75rem; border-radius: 5px; border: none;">
@@ -399,12 +419,13 @@
   </div>
 
   <div class="container">
+    <div class="section-separator"></div>
 
     <div class="grid" id="services">
       <section>
         <div class="service-card">
           <div class="card">
-            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <img src="media/m365.webp" alt="Service preview" onerror="this.style.display='none'" />
             <h2>Microsoft 365 Support & Setup</h2>
             <p>We specialize in configuring, securing, and supporting Microsoft 365 for small businesses. From new tenant creation to user onboarding, security policies, and ongoing administration—we help your tools work smarter for you.</p>
             <ul>
@@ -420,7 +441,7 @@
       <section>
         <div class="service-card reverse">
           <div class="card">
-            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <img src="media/networking.jpg" alt="Service preview" onerror="this.style.display='none'" />
             <h2>Small Business Networking</h2>
             <p>Fixify Tech builds and maintains reliable networks designed around Ubiquiti UniFi hardware—ideal for offices, clinics, and shops in Anchorage. We’ll help you achieve fast, secure, and scalable connectivity.</p>
             <ul>
@@ -436,7 +457,7 @@
       <section>
         <div class="service-card">
           <div class="card">
-            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <img src="media/compliance.jpg" alt="Service preview" onerror="this.style.display='none'" />
             <h2>Compliance-Focused IT Solutions</h2>
             <p>We design IT systems with compliance and security in mind—built for industries where uptime, data privacy, and audit readiness matter most. Our goal is to support smooth operations with resilient infrastructure and streamlined workflows.</p>
             <ul>
@@ -452,7 +473,7 @@
       <section>
         <div class="service-card reverse">
           <div class="card">
-            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <img src="media/repair.jpg" alt="Service preview" onerror="this.style.display='none'" />
             <h2>Workstation & PC Repair</h2>
             <p>Whether you're a content creator, gamer, or small office, we offer repair and custom build services for high-performance computers. Our experience spans from GPUs to thermal management and cable routing.</p>
             <ul>
@@ -465,10 +486,10 @@
         </div>
       </section>
 
+      <div class="section-separator"></div>
       <section>
-        <div class="service-card">
+        <div class="full-span">
           <div class="card">
-            <img src="path/to/placeholder.jpg" alt="Service preview" />
             <h2>Other Services</h2>
             <ul>
               <li>Secure backup solutions and disaster recovery planning</li>
@@ -481,20 +502,13 @@
       </section>
     </div>
 
-
     <!-- About Section -->
-    <img src="path/to/placeholder.jpg" alt="About preview" class="center-image" />
-    <div class="card" id="about" style="margin-top: 2rem;">
-      <h2>About Fixify Tech</h2>
-      <p>Fixify Tech is built on years of real-world experience in frontline operations, IT support, and systems design. We specialize in practical, secure, and scalable IT solutions that help local organizations and small businesses stay efficient, connected, and protected. Our approach blends technical know-how with a strong understanding of compliance-driven environments, making us a reliable partner for industries with high standards for data integrity and uptime.</p>
-    </div>
-
-    <!-- Testimonials -->
-    <img src="path/to/placeholder.jpg" alt="About preview" class="center-image" />
-    <div class="card" style="margin-top: 2rem;">
-      <h2>What Clients Are Saying</h2>
-      <blockquote style="font-style: italic; margin-bottom: 1rem;">"Fixify Tech helped our clinic modernize our network and onboard new staff without headaches. Highly recommended!" — Local Clinic Manager</blockquote>
-      <blockquote style="font-style: italic;">"Fast, responsive, and super knowledgeable. Travis made our IT transition seamless." — Small Business Owner</blockquote>
+    <div class="section-separator"></div>
+    <div class="full-span">
+      <div class="card" id="about" style="margin-top: 2rem;">
+        <h2>About Fixify Tech</h2>
+        <p>Fixify Tech is built on years of real-world experience in frontline operations, IT support, and systems design. We specialize in practical, secure, and scalable IT solutions that help local organizations and small businesses stay efficient, connected, and protected. Our approach blends technical know-how with a strong understanding of compliance-driven environments, making us a reliable partner for industries with high standards for data integrity and uptime.</p>
+      </div>
     </div>
 
 
@@ -505,8 +519,6 @@
 
   <footer>
     <p>&copy; 2025 Fixify Tech — Serving Anchorage, Alaska with secure, local IT support.</p>
-    <p>Email: <a href="mailto:contact@fixifytech.com">contact@fixifytech.com</a></p>
-    <p>Phone: <a href="tel:+19075701428">(907) 570-1428</a></p>
     <div class="social">
       <a href="https://www.facebook.com/fixifytech" target="_blank" rel="noopener noreferrer">Visit Us on Facebook</a>
     </div>
