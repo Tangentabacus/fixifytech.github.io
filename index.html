@@ -28,6 +28,8 @@
 
     .card {
       border-left: 5px solid var(--accent-color);
+      min-height: 100%;
+      transition: background 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card.cta {
@@ -39,12 +41,12 @@
 
     @media (min-width: 700px) {
       .card {
-        transition: transform 0.3s ease;
+        height: 100%;
       }
 
       .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
       }
     }
     :root {
@@ -221,14 +223,15 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      align-items: stretch;
     }
 
     .service-card img {
       width: 100%;
-      max-width: 400px;
-      border-radius: 8px;
+      max-width: 300px;
       height: auto;
-      object-fit: cover;
+      object-fit: contain;
+      border-radius: 8px;
       transition: transform 0.3s ease;
     }
 
