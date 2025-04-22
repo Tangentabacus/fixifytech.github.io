@@ -1,11 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+  <!-- Favicon -->
+  <link rel="icon" href="path/to/favicon.ico" type="image/x-icon" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fixify Tech | Computer Repair & IT in Anchorage, Alaska</title>
   <meta name="description" content="Fixify Tech offers Microsoft 365 support, Ubiquiti networking, healthcare IT consulting, and custom workstation repairs for small businesses in Anchorage, Alaska." />
+  <meta property="og:title" content="Fixify Tech | Secure & Professional IT Support in Anchorage" />
+  <meta property="og:description" content="IT solutions focused on compliance, reliability, and scalability for local businesses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://fixifytech.github.io/path/to/social-preview.jpg" />
+  <meta property="og:url" content="https://fixifytech.github.io/" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fixify Tech | Anchorage IT Services" />
+  <meta name="twitter:description" content="Trusted IT support tailored for compliance-focused environments and small businesses." />
+  <meta name="twitter:image" content="https://fixifytech.github.io/path/to/social-preview.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
   <style>
+    section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--accent-color);
+    }
+
+
+    .card {
+      border-left: 5px solid var(--accent-color);
+    }
+
+    .card.cta {
+      border-left: none;
+      border-right: none;
+      padding: 4rem 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (min-width: 700px) {
+      .card {
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      }
+    }
     :root {
       --yellow: #ffd700;
       --charcoal: #1a1a1a;
@@ -40,9 +81,20 @@
       margin: 0;
       background-color: var(--bg-color);
       color: var(--text-color);
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    a:focus {
+      outline: 3px dashed var(--accent-color);
+      outline-offset: 2px;
     }
 
     header {
@@ -63,9 +115,9 @@
     }
 
     .container {
-      max-width: 960px;
-      margin: auto;
-      padding: 2rem 1rem;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 6rem 1rem 2rem;
     }
 
     h2 {
@@ -79,6 +131,19 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       transition: background 0.3s;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .card ul {
+      margin: 0;
+    }
+
+    .card p {
+      margin: 0 0 1rem;
     }
 
     ul {
@@ -145,87 +210,309 @@
         font-size: 2rem;
       }
     }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .service-card img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card img:hover {
+      transform: scale(1.03);
+    }
+
+    @media (min-width: 768px) {
+      .service-card {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .service-card.reverse {
+        flex-direction: row-reverse;
+      }
+    }
+
+    .center-image {
+      display: block;
+      margin: 0 auto 1rem;
+      max-width: 400px;
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    nav.sticky {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--accent-color);
+      color: var(--light-text);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    nav.sticky ul li a {
+      color: var(--light-text);
+      font-weight: bold;
+    }
+
+    html[data-theme='light'] nav.sticky {
+      background-color: #d4af37;
+      color: var(--light-text);
+    }
+
+    html[data-theme='light'] nav.sticky ul li a {
+      color: var(--light-text);
+    }
+
+    .cta {
+      text-align: center;
+      margin: 4rem auto;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(120deg, #fff5cc 0%, #ffed9e 25%, #fff5cc 50%, #ffed9e 75%, #fff5cc 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 6s ease infinite;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      max-width: 900px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    html[data-theme='dark'] .cta {
+      background: linear-gradient(120deg, #4a4a00 0%, #333300 25%, #4a4a00 50%, #333300 75%, #4a4a00 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 6s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      top: -20px;
+      right: -20px;
+      filter: blur(20px);
+    }
+
+    .cta button {
+      margin-top: 1rem;
+      background: linear-gradient(to right, #ffd700, #f0c400);
+      color: #000;
+      font-size: 1.25rem;
+      font-weight: bold;
+      border: 2px solid #000;
+      padding: 1rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cta button:hover {
+      background: linear-gradient(to right, #f0c400, #ffd700);
+      transform: scale(1.05);
+    }
+
+    .logo-container {
+      transition: all 0.3s ease;
+    }
+
+    .slogan {
+      transition: opacity 0.3s ease;
+    }
+
+    .scrolled .logo-container img {
+      max-height: 40px !important;
+    }
+
+    .scrolled .slogan {
+      opacity: 0;
+    }
+
+    nav.sticky.scrolled {
+      background-color: rgba(255, 215, 0, 0.85);
+      padding: 0.5rem 1rem !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    nav.sticky.scrolled ul {
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Fixify Tech</h1>
-    <p>Computer Repair and IT Solutions — Anchorage, Alaska</p>
+    <!-- Logo Placeholder -->
+    <div class="logo-container">
+      <img src="path/to/logo.png" alt="Fixify Tech Logo" style="max-height: 80px; margin-bottom: 1rem;" />
+      <h1>Fixify Tech</h1>
+      <p class="slogan">Computer Repair and IT Solutions — Anchorage, Alaska</p>
+    </div>
   </header>
+
+  <nav id="main-nav" class="sticky" style="padding: 1rem;">
+    <ul style="display: flex; justify-content: center; gap: 2rem; list-style: none; margin: 0; padding: 0;">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="card cta" id="contact-form">
+    <h2>Let's Get Started</h2>
+    <p style="font-size: 1.2rem; font-weight: 500; max-width: 700px; margin: 0 auto 1.5rem;">
+      Need help with your tech? Reach out today — no commitment required. We’re here to simplify the complicated, fix the broken, and keep your business connected.
+    </p>
+    <form action="https://formsubmit.co/contact@fixifytech.com" method="POST">
+      <input type="hidden" name="_honey" style="display:none">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://fixifytech.github.io/thank-you.html">
+      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
+        <input type="text" name="name" placeholder="Your Name" required style="padding: 0.75rem; border-radius: 5px; border: none;">
+        <input type="email" name="email" placeholder="Your Email" required style="padding: 0.75rem; border-radius: 5px; border: none;">
+        <textarea name="message" rows="5" placeholder="Tell us what you need..." required style="padding: 0.75rem; border-radius: 5px; border: none;"></textarea>
+        <button type="submit" style="padding: 0.75rem 1.5rem; background-color: var(--accent-color); color: var(--light-text); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          Send Message
+        </button>
+      </div>
+    </form>
+  </div>
 
   <div class="container">
 
-    <div class="grid">
-      <div class="card">
-        <h2>Microsoft 365 Support & Setup</h2>
-        <p>We specialize in configuring, securing, and supporting Microsoft 365 for small businesses. From new tenant creation to user onboarding, security policies, and ongoing administration—we help your tools work smarter for you.</p>
-        <ul>
-          <li>Microsoft 365 tenant setup and licensing</li>
-          <li>Email, Teams, SharePoint, and OneDrive support</li>
-          <li>Security policies and compliance tools</li>
-          <li>Streamlined onboarding and automation</li>
-        </ul>
-      </div>
+    <div class="grid" id="services">
+      <section>
+        <div class="service-card">
+          <div class="card">
+            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <h2>Microsoft 365 Support & Setup</h2>
+            <p>We specialize in configuring, securing, and supporting Microsoft 365 for small businesses. From new tenant creation to user onboarding, security policies, and ongoing administration—we help your tools work smarter for you.</p>
+            <ul>
+              <li>Microsoft 365 tenant setup and licensing</li>
+              <li>Email, Teams, SharePoint, and OneDrive support</li>
+              <li>Security policies and compliance tools</li>
+              <li>Streamlined onboarding and automation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="card">
-        <h2>Small Business Networking</h2>
-        <p>Fixify Tech builds and maintains reliable networks designed around Ubiquiti UniFi hardware—ideal for offices, clinics, and shops in Anchorage. We’ll help you achieve fast, secure, and scalable connectivity.</p>
-        <ul>
-          <li>Ubiquiti UniFi network design & deployment</li>
-          <li>Wi-Fi coverage mapping & VLAN segmentation</li>
-          <li>Firewall configuration and remote access</li>
-          <li>Ongoing monitoring and maintenance</li>
-        </ul>
-      </div>
+      <section>
+        <div class="service-card reverse">
+          <div class="card">
+            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <h2>Small Business Networking</h2>
+            <p>Fixify Tech builds and maintains reliable networks designed around Ubiquiti UniFi hardware—ideal for offices, clinics, and shops in Anchorage. We’ll help you achieve fast, secure, and scalable connectivity.</p>
+            <ul>
+              <li>Ubiquiti UniFi network design & deployment</li>
+              <li>Wi-Fi coverage mapping & VLAN segmentation</li>
+              <li>Firewall configuration and remote access</li>
+              <li>Ongoing monitoring and maintenance</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="card">
-        <h2>Healthcare-Ready IT Solutions</h2>
-        <p>With experience in emergency medicine and clinic operations, we design IT environments that meet the demands of regulated industries. Our focus is on minimizing risk and maximizing uptime.</p>
-        <ul>
-          <li>Risk-aware IT planning for clinical operations</li>
-          <li>Secure device management and data protection</li>
-          <li>Workflow automation for intake and documentation</li>
-          <li>Surveillance and access control integrations</li>
-        </ul>
-      </div>
+      <section>
+        <div class="service-card">
+          <div class="card">
+            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <h2>Compliance-Focused IT Solutions</h2>
+            <p>We design IT systems with compliance and security in mind—built for industries where uptime, data privacy, and audit readiness matter most. Our goal is to support smooth operations with resilient infrastructure and streamlined workflows.</p>
+            <ul>
+              <li>IT planning with a focus on regulatory compliance</li>
+              <li>Secure device deployment and data safeguards</li>
+              <li>Process automation and operational streamlining</li>
+              <li>Integration of monitoring and access control systems</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="card">
-        <h2>Workstation & PC Repair</h2>
-        <p>Whether you're a content creator, gamer, or small office, we offer repair and custom build services for high-performance computers. Our experience spans from GPUs to thermal management and cable routing.</p>
-        <ul>
-          <li>Custom PC builds for gaming or production</li>
-          <li>Workstation optimization and part upgrades</li>
-          <li>Diagnostics and hardware repair</li>
-          <li>Windows, drivers, and software troubleshooting</li>
-        </ul>
-      </div>
+      <section>
+        <div class="service-card reverse">
+          <div class="card">
+            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <h2>Workstation & PC Repair</h2>
+            <p>Whether you're a content creator, gamer, or small office, we offer repair and custom build services for high-performance computers. Our experience spans from GPUs to thermal management and cable routing.</p>
+            <ul>
+              <li>Custom PC builds for gaming or production</li>
+              <li>Workstation optimization and part upgrades</li>
+              <li>Diagnostics and hardware repair</li>
+              <li>Windows, drivers, and software troubleshooting</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <div class="card">
-        <h2>Other Services</h2>
-        <ul>
-          <li>Secure backup solutions and disaster recovery planning</li>
-          <li>Device procurement and lifecycle consulting</li>
-          <li>Wi-Fi enhancements and remote worker setup</li>
-          <li>Local IT consulting for growing Alaskan businesses</li>
-        </ul>
-      </div>
+      <section>
+        <div class="service-card">
+          <div class="card">
+            <img src="path/to/placeholder.jpg" alt="Service preview" />
+            <h2>Other Services</h2>
+            <ul>
+              <li>Secure backup solutions and disaster recovery planning</li>
+              <li>Device procurement and lifecycle consulting</li>
+              <li>Wi-Fi enhancements and remote worker setup</li>
+              <li>Local IT consulting for growing Alaskan businesses</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
 
+
+    <!-- About Section -->
+    <img src="path/to/placeholder.jpg" alt="About preview" class="center-image" />
+    <div class="card" id="about" style="margin-top: 2rem;">
+      <h2>About Fixify Tech</h2>
+      <p>Fixify Tech is built on years of real-world experience in frontline operations, IT support, and systems design. We specialize in practical, secure, and scalable IT solutions that help local organizations and small businesses stay efficient, connected, and protected. Our approach blends technical know-how with a strong understanding of compliance-driven environments, making us a reliable partner for industries with high standards for data integrity and uptime.</p>
+    </div>
+
+    <!-- Testimonials -->
+    <img src="path/to/placeholder.jpg" alt="About preview" class="center-image" />
     <div class="card" style="margin-top: 2rem;">
-      <h2>Contact Fixify Tech</h2>
-      <p>Email us: <a href="mailto:contact@fixifytech.com">contact@fixifytech.com</a></p>
-      <div class="social">
-        <a href="https://www.facebook.com/fixifytech" target="_blank" rel="noopener noreferrer">Visit Us on Facebook</a>
-      </div>
+      <h2>What Clients Are Saying</h2>
+      <blockquote style="font-style: italic; margin-bottom: 1rem;">"Fixify Tech helped our clinic modernize our network and onboard new staff without headaches. Highly recommended!" — Local Clinic Manager</blockquote>
+      <blockquote style="font-style: italic;">"Fast, responsive, and super knowledgeable. Travis made our IT transition seamless." — Small Business Owner</blockquote>
     </div>
+
+
+    <!-- Contact anchor for scrolling -->
+    <div id="contact"></div>
 
   </div>
 
   <footer>
-    &copy; 2025 Fixify Tech — Serving Anchorage, Alaska with secure, local IT support.
-    <br>
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Light / Dark Mode</button>
+    <p>&copy; 2025 Fixify Tech — Serving Anchorage, Alaska with secure, local IT support.</p>
+    <p>Email: <a href="mailto:contact@fixifytech.com">contact@fixifytech.com</a></p>
+    <p>Phone: <a href="tel:+19075701428">(907) 570-1428</a></p>
+    <div class="social">
+      <a href="https://www.facebook.com/fixifytech" target="_blank" rel="noopener noreferrer">Visit Us on Facebook</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light and dark mode">
+      Toggle Light / Dark Mode
+    </button>
   </footer>
 
   <script>
@@ -240,6 +527,15 @@
     if (savedTheme) {
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
+
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 150) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
   </script>
 
 </body>
