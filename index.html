@@ -78,6 +78,7 @@
       padding: 0;
       flex: 1 1 auto;
       justify-content: center;
+      flex-wrap: nowrap; /* prevent wrapping */
     }
 
     /* Ensure nav sections align items vertically */
@@ -98,6 +99,14 @@
       letter-spacing: -0.02em;
       text-decoration: none;
       transition: background-color 0.2s ease;
+      white-space: nowrap; /* keep text on one line */
+    }
+    /* Responsive adjustment for Facebook button on mobile */
+    @media (max-width: 600px) {
+      .nav-center .social {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.9rem;
+      }
     }
 
     .nav-center .social:hover {
@@ -870,9 +879,22 @@
       cards.forEach(c => c.style.minHeight = maxH + 'px');
     }
 
+    // Facebook button text adjustment for responsiveness
+    function updateFacebookButtonText() {
+      const fbBtn = document.querySelector('.nav-center .social');
+      if (!fbBtn) return;
+      if (window.innerWidth < 600) {
+        fbBtn.textContent = 'Facebook';
+      } else {
+        fbBtn.textContent = 'Visit Us on Facebook';
+      }
+    }
+
     // Run on load and resize
     window.addEventListener('DOMContentLoaded', equalizeServiceHeights);
     window.addEventListener('resize', equalizeServiceHeights);
+    window.addEventListener('DOMContentLoaded', updateFacebookButtonText);
+    window.addEventListener('resize', updateFacebookButtonText);
   </script>
 
 </body>
