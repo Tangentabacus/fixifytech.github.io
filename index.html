@@ -467,38 +467,28 @@
         <input type="email" name="email" placeholder="Your Email *" required title="Your Email is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
         <textarea name="message" rows="5" placeholder="Tell us what you need... *" required title="Message is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;"></textarea>
         <input type="text" name="_gotcha" style="display:none" autocomplete="off" tabindex="-1">
+        <div class="g-recaptcha"
+             data-sitekey="6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK"
+             data-callback="enableSubmit"
+             data-expired-callback="disableSubmit">
+        </div>
         <div id="submit-wrapper" onclick="
-         const btn = document.getElementById('submit-btn');
-         if (btn.classList.contains('disabled')) {
-           alert('Please complete all fields and verify the captcha to send the message.');
-         } else {
-           document.getElementById('recaptcha-btn').click();
-         }
-       ">
+           const btn = document.getElementById('submit-btn');
+           if (btn.classList.contains('disabled')) {
+             alert('Please complete all fields and verify the captcha to send the message.');
+           } else {
+             document.getElementById('contact-form').submit();
+           }
+         ">
           <button
             id="submit-btn"
-            data-loading-text="Verifying..."
-            style="pointer-events: none;"
-            class="disabled">
+            class="disabled"
+            disabled
+            style="padding: 0.75rem 1.5rem; background-color: var(--accent-color); color: var(--light-text); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
             Send Message
           </button>
         </div>
       </div>
-      <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
-      <script>
-        function onSubmit(token) {
-          document.getElementById('submit-btn').disabled = false;
-          document.getElementById('contact-form').submit();
-        }
-      </script>
-      <button
-        class="g-recaptcha"
-        data-sitekey="6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK"
-        data-callback="onSubmit"
-        data-size="invisible"
-        id="recaptcha-btn"
-        style="display:none">
-      </button>
     </form>
   </div>
 
