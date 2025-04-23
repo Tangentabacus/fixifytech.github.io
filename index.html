@@ -19,6 +19,45 @@
   <meta name="twitter:image" content="https://fixifytech.github.io/path/to/social-preview.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
   <style>
+    #submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    #top-button {
+      background: none;
+      border: none;
+      color: var(--light-text);
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+
+    nav.sticky.fixed #top-button {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    nav.sticky ul li a.active {
+      text-decoration: underline;
+    }
+    nav.sticky.initial {
+      position: static;
+      padding: 1rem 1rem;
+    }
+    nav.sticky.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem 1rem;
+    }
     section {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -119,7 +158,7 @@
     .container {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 4rem 1rem 2rem;
+      padding: 8rem 1rem 2rem; /* create more space for nav height */
     }
     .section-separator {
       margin: 4rem auto 2rem;
@@ -259,12 +298,14 @@
     }
 
     nav.sticky {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
+      left: 0;
+      right: 0;
+      z-index: 2000;
       background-color: var(--accent-color);
       color: var(--light-text);
-      transition: all 0.3s ease;
+      transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -291,10 +332,11 @@
       background: linear-gradient(120deg, #fff5cc 0%, #ffed9e 25%, #fff5cc 50%, #ffed9e 75%, #fff5cc 100%);
       background-size: 300% 300%;
       animation: gradientShift 6s ease infinite;
-      border-radius: 20px;
+      border-radius: 20px !important;
       box-shadow: 0 12px 30px rgba(0,0,0,0.2);
       max-width: 900px;
       position: relative;
+      z-index: 0;
       overflow: hidden;
     }
 
@@ -372,7 +414,7 @@
 
     nav.sticky.scrolled {
       background-color: rgba(255, 215, 0, 0.85);
-      padding: 0.5rem 1rem !important;
+      padding: 0.5rem 1rem;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
@@ -380,6 +422,8 @@
       font-size: 0.95rem;
     }
   </style>
+  <!-- Google reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -391,13 +435,15 @@
       <p class="slogan">Computer Repair and IT Solutions — Anchorage, Alaska</p>
     </div>
   </header>
-
-  <nav id="main-nav" class="sticky" style="padding: 1rem;">
-    <ul style="display: flex; justify-content: center; gap: 2rem; list-style: none; margin: 0; padding: 0;">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+  <div id="nav-spacer"></div>
+  <nav id="main-nav" class="sticky initial">
+    <ul style="display: flex; justify-content: center; gap: 2rem; list-style: none; margin: 0; padding: 0; align-items: center; position: relative;">
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
     </ul>
+    <div style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+      <button id="top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">Top ↑</button>
+    </div>
   </nav>
 
   <div class="card cta" id="contact-form">
@@ -407,14 +453,19 @@
     </p>
     <form action="https://formsubmit.co/tangentabacus@gmail.com" method="POST">
       <input type="hidden" name="_honey" style="display:none">
-      <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://fixifytech.github.io/thank-you.html">
       <input type="hidden" name="_subject" value="🚨 New Lead from Fixify Tech Website!" />
       <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
-        <input type="text" name="name" placeholder="Your Name" required style="padding: 0.75rem; border-radius: 5px; border: none;">
-        <input type="email" name="email" placeholder="Your Email" required style="padding: 0.75rem; border-radius: 5px; border: none;">
-        <textarea name="message" rows="5" placeholder="Tell us what you need..." required style="padding: 0.75rem; border-radius: 5px; border: none;"></textarea>
-        <button type="submit" style="padding: 0.75rem 1.5rem; background-color: var(--accent-color); color: var(--light-text); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+        <input type="text" name="name" placeholder="Your Name *" required title="Your Name is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
+        <input type="email" name="email" placeholder="Your Email *" required title="Your Email is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
+        <textarea name="message" rows="5" placeholder="Tell us what you need... *" required title="Message is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;"></textarea>
+        <input type="text" name="_gotcha" style="display:none" autocomplete="off" tabindex="-1">
+        <div class="g-recaptcha"
+             data-sitekey="6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK"
+             data-callback="enableSubmit"
+             data-expired-callback="disableSubmit">
+        </div>
+        <button type="submit" id="submit-btn" disabled style="padding: 0.75rem 1.5rem; background-color: var(--accent-color); color: var(--light-text); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
           Send Message
         </button>
       </div>
@@ -515,8 +566,6 @@
     </div>
 
 
-    <!-- Contact anchor for scrolling -->
-    <div id="contact"></div>
 
   </div>
 
@@ -543,14 +592,85 @@
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
 
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('main-nav');
-      if (window.scrollY > 150) {
-        nav.classList.add('scrolled');
+    // Sticky/fixed nav scroll logic
+    const nav = document.getElementById('main-nav');
+    const topBtn = document.getElementById('top-button');
+    const header = document.querySelector('header');
+    const spacer = document.getElementById('nav-spacer');
+
+    const updateNavState = () => {
+      const buffer = 1; // prevent jump due to fractional pixel scroll
+      const headerBottom = header.getBoundingClientRect().bottom + window.scrollY;
+
+      if (window.scrollY + buffer >= headerBottom) {
+        nav.classList.remove('initial');
+        nav.classList.add('fixed', 'scrolled');
+        // Add spacer to prevent layout shift when nav is fixed
+        spacer.style.height = `${nav.offsetHeight}px`;
+        // "Top" button visibility is now handled by CSS.
       } else {
-        nav.classList.remove('scrolled');
+        nav.classList.remove('fixed', 'scrolled');
+        nav.classList.add('initial');
+        // Remove spacer when nav is not fixed
+        spacer.style.height = '0px';
+        // "Top" button visibility is now handled by CSS.
+      }
+    };
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateNavState();
+          updateActiveLink();
+          ticking = false;
+        });
+        ticking = true;
       }
     });
+    window.addEventListener('resize', updateNavState);
+    document.addEventListener('DOMContentLoaded', updateNavState);
+
+    // Improved scroll detection for nav underline
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = {
+      services: document.querySelector("#services"),
+      about: document.querySelector("#about")
+    };
+
+    function updateActiveLink() {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const totalHeight = document.body.offsetHeight;
+
+      const servicesTop = sections.services.offsetTop;
+      const servicesBottom = servicesTop + sections.services.offsetHeight;
+      const aboutTop = sections.about.offsetTop;
+
+      navLinks.forEach(link => link.classList.remove("active"));
+
+      if (
+        scrollY + viewportHeight >= totalHeight ||
+        (scrollY > aboutTop - 100 && scrollY + 100 < totalHeight)
+      ) {
+        document.querySelector('a[href="#about"]').classList.add("active");
+      } else if (scrollY >= servicesTop - 100 && scrollY < servicesBottom - 100) {
+        document.querySelector('a[href="#services"]').classList.add("active");
+      }
+    }
+
+    window.addEventListener("resize", updateActiveLink);
+    document.addEventListener("DOMContentLoaded", updateActiveLink);
+
+    // reCAPTCHA submit button enable/disable
+    function enableSubmit() {
+      const btn = document.getElementById('submit-btn');
+      if (btn) btn.disabled = false;
+    }
+    function disableSubmit() {
+      const btn = document.getElementById('submit-btn');
+      if (btn) btn.disabled = true;
+    }
   </script>
 
 </body>
