@@ -18,7 +18,7 @@
   <meta name="twitter:description" content="Trusted IT support tailored for compliance-focused environments and small businesses." />
   <meta name="twitter:image" content="https://fixifytech.github.io/path/to/social-preview.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK&hl=en" async defer></script>
+
   <style>
     #submit-btn:disabled {
       opacity: 0.5;
@@ -457,23 +457,17 @@
     <p style="font-size: 1.2rem; font-weight: 500; max-width: 700px; margin: 0 auto 1.5rem;">
       Need help with your tech? Reach out today — no commitment required. We’re here to simplify the complicated, fix the broken, and keep your business connected.
     </p>
-    <form action="https://formsubmit.co/tangentabacus@gmail.com" method="POST" id="contact-form">
+    <form action="https://formsubmit.co/tangentabacus@gmail.com" method="POST">
       <input type="hidden" name="_honey" style="display:none">
       <input type="hidden" name="_next" value="https://fixifytech.github.io/thank-you.html">
       <input type="hidden" name="_subject" value="🚨 New Lead from Fixify Tech Website!" />
-      <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
       <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
         <input type="text" name="name" placeholder="Your Name *" required title="Your Name is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
         <input type="email" name="email" placeholder="Your Email *" required title="Your Email is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
         <textarea name="message" rows="5" placeholder="Tell us what you need... *" required title="Message is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;"></textarea>
-        <input type="text" name="_gotcha" style="display:none" autocomplete="off" tabindex="-1">
-        <div id="submit-wrapper">
-          <button
-            id="submit-btn"
-            style="padding: 0.75rem 1.5rem; background-color: var(--accent-color); color: var(--light-text); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-            Send Message
-          </button>
-        </div>
+        <button type="submit" style="padding: 0.75rem 1.5rem; background-color: var(--accent-color); color: var(--light-text); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          Send Message
+        </button>
       </div>
     </form>
   </div>
@@ -668,22 +662,6 @@
     window.addEventListener("resize", updateActiveLink);
     document.addEventListener("DOMContentLoaded", updateActiveLink);
 
-    // User-interaction reCAPTCHA v3 on button click
-    document.getElementById('submit-wrapper').addEventListener('click', function(e) {
-      e.preventDefault();
-      const form = document.getElementById('contact-form');
-      if (!form.checkValidity()) {
-        alert('Please complete all required fields before submitting.');
-        return;
-      }
-      // Execute reCAPTCHA for 'contact' action
-      grecaptcha.enterprise.ready(function() {
-        grecaptcha.enterprise.execute('6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK', {action: 'contact'}).then(function(token) {
-          document.getElementById('g-recaptcha-response').value = token;
-          form.requestSubmit();
-        });
-      });
-    });
   </script>
 
 </body>
