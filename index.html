@@ -23,6 +23,13 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
+    .disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    #submit-btn:not(.disabled) {
+      pointer-events: auto;
+    }
     html {
       scroll-behavior: smooth;
     }
@@ -451,7 +458,7 @@
     <p style="font-size: 1.2rem; font-weight: 500; max-width: 700px; margin: 0 auto 1.5rem;">
       Need help with your tech? Reach out today — no commitment required. We’re here to simplify the complicated, fix the broken, and keep your business connected.
     </p>
-    <form action="https://formsubmit.co/tangentabacus@gmail.com" method="POST">
+    <form action="https://formsubmit.co/tangentabacus@gmail.com" method="POST" id="contact-form">
       <input type="hidden" name="_honey" style="display:none">
       <input type="hidden" name="_next" value="https://fixifytech.github.io/thank-you.html">
       <input type="hidden" name="_subject" value="🚨 New Lead from Fixify Tech Website!" />
@@ -460,15 +467,38 @@
         <input type="email" name="email" placeholder="Your Email *" required title="Your Email is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
         <textarea name="message" rows="5" placeholder="Tell us what you need... *" required title="Message is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;"></textarea>
         <input type="text" name="_gotcha" style="display:none" autocomplete="off" tabindex="-1">
-        <div class="g-recaptcha"
-             data-sitekey="6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK"
-             data-callback="enableSubmit"
-             data-expired-callback="disableSubmit">
+        <div id="submit-wrapper" onclick="
+         const btn = document.getElementById('submit-btn');
+         if (btn.classList.contains('disabled')) {
+           alert('Please complete all fields and verify the captcha to send the message.');
+         } else {
+           document.getElementById('recaptcha-btn').click();
+         }
+       ">
+          <button
+            id="submit-btn"
+            data-loading-text="Verifying..."
+            style="pointer-events: none;"
+            class="disabled">
+            Send Message
+          </button>
         </div>
-        <button type="submit" id="submit-btn" disabled style="padding: 0.75rem 1.5rem; background-color: var(--accent-color); color: var(--light-text); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-          Send Message
-        </button>
       </div>
+      <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+      <script>
+        function onSubmit(token) {
+          document.getElementById('submit-btn').disabled = false;
+          document.getElementById('contact-form').submit();
+        }
+      </script>
+      <button
+        class="g-recaptcha"
+        data-sitekey="6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK"
+        data-callback="onSubmit"
+        data-size="invisible"
+        id="recaptcha-btn"
+        style="display:none">
+      </button>
     </form>
   </div>
 
@@ -662,15 +692,15 @@
     window.addEventListener("resize", updateActiveLink);
     document.addEventListener("DOMContentLoaded", updateActiveLink);
 
-    // reCAPTCHA submit button enable/disable
-    function enableSubmit() {
-      const btn = document.getElementById('submit-btn');
-      if (btn) btn.disabled = false;
-    }
-    function disableSubmit() {
-      const btn = document.getElementById('submit-btn');
-      if (btn) btn.disabled = true;
-    }
+    // reCAPTCHA submit button enable/disable (no longer needed with invisible v2, but keep for future use)
+    // function enableSubmit() {
+    //   const btn = document.getElementById('submit-btn');
+    //   if (btn) btn.disabled = false;
+    // }
+    // function disableSubmit() {
+    //   const btn = document.getElementById('submit-btn');
+    //   if (btn) btn.disabled = true;
+    // }
   </script>
 
 </body>
