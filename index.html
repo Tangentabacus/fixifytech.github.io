@@ -18,6 +18,7 @@
   <meta name="twitter:description" content="Trusted IT support tailored for compliance-focused environments and small businesses." />
   <meta name="twitter:image" content="https://fixifytech.github.io/path/to/social-preview.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK" async defer></script>
   <style>
     #submit-btn:disabled {
       opacity: 0.5;
@@ -429,8 +430,6 @@
       font-size: 0.95rem;
     }
   </style>
-  <!-- Google reCAPTCHA v2 -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -462,16 +461,12 @@
       <input type="hidden" name="_honey" style="display:none">
       <input type="hidden" name="_next" value="https://fixifytech.github.io/thank-you.html">
       <input type="hidden" name="_subject" value="🚨 New Lead from Fixify Tech Website!" />
+      <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
       <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 600px; margin: 0 auto;">
         <input type="text" name="name" placeholder="Your Name *" required title="Your Name is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
         <input type="email" name="email" placeholder="Your Email *" required title="Your Email is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;">
         <textarea name="message" rows="5" placeholder="Tell us what you need... *" required title="Message is required" aria-required="true" style="padding: 0.75rem; border-radius: 5px; border: none;"></textarea>
         <input type="text" name="_gotcha" style="display:none" autocomplete="off" tabindex="-1">
-        <div class="g-recaptcha"
-             data-sitekey="6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK"
-             data-callback="enableSubmit"
-             data-expired-callback="disableSubmit">
-        </div>
         <div id="submit-wrapper" onclick="
            const btn = document.getElementById('submit-btn');
            if (btn.classList.contains('disabled')) {
@@ -682,15 +677,18 @@
     window.addEventListener("resize", updateActiveLink);
     document.addEventListener("DOMContentLoaded", updateActiveLink);
 
-    // reCAPTCHA submit button enable/disable (no longer needed with invisible v2, but keep for future use)
-    // function enableSubmit() {
-    //   const btn = document.getElementById('submit-btn');
-    //   if (btn) btn.disabled = false;
-    // }
-    // function disableSubmit() {
-    //   const btn = document.getElementById('submit-btn');
-    //   if (btn) btn.disabled = true;
-    // }
+    // reCAPTCHA v3 enterprise: fetch token and enable submit
+    grecaptcha.enterprise.ready(function() {
+      grecaptcha.enterprise.execute("6LdAVyErAAAAAIjPedC0NsERiPFQVpZKcA_L7FUK", {action: "contact"}).then(function(token) {
+        const resp = document.getElementById("g-recaptcha-response");
+        const btn = document.getElementById("submit-btn");
+        if (resp && btn) {
+          resp.value = token;
+          btn.disabled = false;
+          btn.classList.remove("disabled");
+        }
+      });
+    });
   </script>
 
 </body>
