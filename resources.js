@@ -37,3 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+=======
+  if (!genBtn) return;
+  genBtn.addEventListener('click', () => {
+    const lenInput = document.getElementById('pw-length');
+    const output = document.getElementById('pw-output');
+    let len = parseInt(lenInput.value, 10);
+    if (isNaN(len) || len < 8) len = 8;
+    if (len > 64) len = 64;
+    output.value = generatePassword(len);
+  });
+});
