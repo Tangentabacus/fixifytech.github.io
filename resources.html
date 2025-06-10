@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources | Fixify Tech</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="scripts.js" defer></script>
+  <script src="resources.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="media/logo.png" alt="Fixify Tech Logo" style="max-height: 80px; margin-bottom: 1rem;" onerror="this.style.display='none'; document.getElementById('logo-title').style.display = 'block';" onload="document.getElementById('logo-title').style.display = 'none';" />
+      <h1 id="logo-title" style="margin: 0;">Fixify Tech</h1>
+      <p class="slogan">Computer Repair and IT Solutions — Anchorage, Alaska</p>
+    </div>
+  </header>
+  <div id="nav-spacer"></div>
+  <nav id="main-nav" class="sticky initial">
+    <div class="nav-left">
+      <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light and dark mode">🌙</button>
+    </div>
+    <ul class="nav-center">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="resources.html" class="nav-link">Resources</a></li>
+      <li><a href="https://www.facebook.com/fixifytech" target="_blank" rel="noopener noreferrer" class="social">Visit Us on Facebook</a></li>
+    </ul>
+    <div class="nav-right">
+      <button id="top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="section-separator"></div>
+    <div class="full-span">
+      <div class="card" style="margin-top:2rem;">
+        <h2>Password Generator</h2>
+        <p>Generate a secure password:</p>
+        <label>Length: <input type="number" id="pw-length" min="8" max="64" value="16" /></label>
+        <button id="gen-btn" style="margin-left:1rem;">Generate</button>
+        <input type="text" id="pw-output" readonly style="width:100%; margin-top:1rem;" />
+        <button id="copy-btn" style="margin-top:0.5rem;">Copy</button>
+      </div>
+    </div>
+    <div class="section-separator"></div>
+    <div class="full-span">
+      <div class="card" style="margin-top:2rem;">
+        <h2>Helpful Links</h2>
+        <ul>
+          <li><a href="https://help.ui.com/hc/en-us" target="_blank" rel="noopener">Ubiquiti Help Center</a></li>
+          <li><a href="https://community.ui.com/" target="_blank" rel="noopener">Ubiquiti Community Forums</a></li>
+          <li><a href="https://learn.microsoft.com/" target="_blank" rel="noopener">Microsoft Learn Documentation</a></li>
+          <li><a href="https://www.cisa.gov/news-events/alerts" target="_blank" rel="noopener">CISA Cybersecurity Alerts</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Fixify Tech — Serving Anchorage, Alaska with secure, local IT support.</p>
+  </footer>
+</body>
+</html>
+
