@@ -81,6 +81,8 @@
     };
 
     function updateActiveLink() {
+      if (!sections.services || !sections.about) return;
+
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
       const totalHeight = document.body.offsetHeight;
