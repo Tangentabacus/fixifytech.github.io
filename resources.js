@@ -1,6 +1,52 @@
 // Advanced password generator
 function generatePassword(length, opts = {}) {
   const lower = 'abcdefghijklmnopqrstuvwxyz';
+  const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const nums = '0123456789';
+  const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+  let pool = lower;
+  const required = [lower];
+  if (opts.uppercase) {
+    pool += upper;
+    required.push(upper);
+  }
+  if (opts.numbers) {
+    pool += nums;
+    required.push(nums);
+  }
+  if (opts.symbols) {
+    pool += symbols;
+    required.push(symbols);
+  }
+
+  const chars = [];
+  required.forEach(set => {
+    const r = crypto.getRandomValues(new Uint32Array(1))[0] % set.length;
+    chars.push(set[r]);
+  });
+
+  while (chars.length < length) {
+    const r = crypto.getRandomValues(new Uint32Array(1))[0] % pool.length;
+    chars.push(pool[r]);
+  }
+
+  for (let i = chars.length - 1; i > 0; i--) {
+    const j = crypto.getRandomValues(new Uint32Array(1))[0] % (i + 1);
+    [chars[i], chars[j]] = [chars[j], chars[i]];
+  }
+
+  return chars.slice(0, length).join('');
+}
+
+const WORD_LIST = [
+  'apple','orange','banana','mango','chair','table','river','mountain','keyboard','window',
+  'car','city','cloud','forest','ocean','coffee','pizza','guitar','laptop','phone',
+  'star','space','rocket','zebra','panda','quartz','galaxy','ninja','sushi','robot'
+];
+
+function generatePassphrase(count) {
+  const array = new Uint32Array(count);
   let chars = lower;
   if (opts.uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   if (opts.numbers) chars += '0123456789';
@@ -8,11 +54,34 @@ function generatePassword(length, opts = {}) {
   if (!chars) chars = lower;
   const array = new Uint32Array(length);
   window.crypto.getRandomValues(array);
-  let pwd = '';
-  for (let i = 0; i < length; i++) {
-    pwd += chars[array[i] % chars.length];
+  const words = [];
+  for (let i = 0; i < count; i++) {
+    words.push(WORD_LIST[array[i] % WORD_LIST.length]);
   }
-  return pwd;
+  return words.join('-');
+}
+
+async function copyText(text, btn) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  } catch (err) {
+    alert('Unable to copy');
+  }
 }
 
 const WORD_LIST = [
