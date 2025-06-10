@@ -15,36 +15,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyBtn = document.getElementById('copy-btn');
   const lenInput = document.getElementById('pw-length');
   const output = document.getElementById('pw-output');
-  if (genBtn) {
-    genBtn.addEventListener('click', () => {
-      let len = parseInt(lenInput.value, 10);
-      if (isNaN(len) || len < 8) len = 8;
-      if (len > 64) len = 64;
-      output.value = generatePassword(len);
-    });
-  }
+
+  if (!genBtn || !output || !lenInput) return;
+
+  genBtn.addEventListener('click', () => {
+    let len = parseInt(lenInput.value, 10);
+    if (isNaN(len) || len < 8) len = 8;
+    if (len > 64) len = 64;
+    output.value = generatePassword(len);
+  });
+
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(output.value);
         const original = copyBtn.textContent;
         copyBtn.textContent = 'Copied!';
-        setTimeout(() => { copyBtn.textContent = original; }, 1500);
+        setTimeout(() => {
+          copyBtn.textContent = original;
+        }, 1500);
       } catch (err) {
         alert('Unable to copy');
       }
     });
   }
-});
-
-=======
-  if (!genBtn) return;
-  genBtn.addEventListener('click', () => {
-    const lenInput = document.getElementById('pw-length');
-    const output = document.getElementById('pw-output');
-    let len = parseInt(lenInput.value, 10);
-    if (isNaN(len) || len < 8) len = 8;
-    if (len > 64) len = 64;
-    output.value = generatePassword(len);
-  });
 });
