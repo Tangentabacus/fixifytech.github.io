@@ -22,3 +22,4 @@ document.addEventListener('DOMContentLoaded', () => {
     output.value = generatePassword(len);
   });
 });
+
