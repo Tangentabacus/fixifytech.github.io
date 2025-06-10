@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resources | Fixify Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <script src="scripts.js" defer></script>
   <script src="resources.js" defer></script>
@@ -22,7 +23,8 @@
       <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle light and dark mode">🌙</button>
     </div>
     <ul class="nav-center">
-      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html#services" class="nav-link">Services</a></li>
+      <li><a href="index.html#about" class="nav-link">About</a></li>
       <li><a href="resources.html" class="nav-link">Resources</a></li>
       <li><a href="https://www.facebook.com/fixifytech" target="_blank" rel="noopener noreferrer" class="social">Visit Us on Facebook</a></li>
     </ul>
@@ -38,6 +40,7 @@
         <p>Generate a secure password:</p>
         <label>Length: <input type="number" id="pw-length" min="8" max="64" value="16" /></label>
         <button id="gen-btn" style="margin-left:1rem;">Generate</button>
+        <button id="copy-btn" style="margin-left:0.5rem;">Copy</button>
         <input type="text" id="pw-output" readonly style="width:100%; margin-top:1rem;" />
       </div>
     </div>
