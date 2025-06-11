@@ -35,13 +35,23 @@
   <div class="container">
     <div class="section-separator"></div>
     <div class="full-span">
-      <div class="card" style="margin-top:2rem;">
+      <div class="card password-card" style="margin-top:2rem;">
         <h2>Password Generator</h2>
         <p>Generate a secure password:</p>
-        <label>Length: <input type="number" id="pw-length" min="8" max="64" value="16" /></label>
-        <button id="gen-btn" style="margin-left:1rem;">Generate</button>
-        <button id="copy-btn" style="margin-left:0.5rem;">Copy</button>
-        <input type="text" id="pw-output" readonly style="width:100%; margin-top:1rem;" />
+        <div class="pw-options">
+          <label class="pw-length">Length:
+            <input type="number" id="pw-length" min="8" max="64" value="16" />
+          </label>
+          <label><input type="checkbox" id="pw-uppercase" checked />Uppercase</label>
+          <label><input type="checkbox" id="pw-numbers" checked />Numbers</label>
+          <label><input type="checkbox" id="pw-symbols" checked />Symbols</label>
+          <label><input type="checkbox" id="pw-words" />Use Words</label>
+        </div>
+        <div class="pw-actions">
+          <button id="gen-btn" class="btn">Generate</button>
+          <button id="copy-btn" class="btn">Copy</button>
+        </div>
+        <input type="text" id="pw-output" readonly />
       </div>
     </div>
     <div class="section-separator"></div>
