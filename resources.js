@@ -47,13 +47,6 @@ const WORD_LIST = [
 
 function generatePassphrase(count) {
   const array = new Uint32Array(count);
-  let chars = lower;
-  if (opts.uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  if (opts.numbers) chars += '0123456789';
-  if (opts.symbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
-  if (!chars) chars = lower;
-  const array = new Uint32Array(length);
-
   window.crypto.getRandomValues(array);
   const words = [];
   for (let i = 0; i < count; i++) {
@@ -71,59 +64,6 @@ async function copyText(text, btn, input) {
       input.select();
       document.execCommand('copy');
       input.setSelectionRange(0, 0);
-async function copyText(text, btn) {
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
-    }
-    const original = btn.textContent;
-    btn.textContent = 'Copied!';
-    setTimeout(() => { btn.textContent = original; }, 1500);
-  } catch (err) {
-    alert('Unable to copy');
-  }
-}
-
-const WORD_LIST = [
-  'apple','orange','banana','mango','chair','table','river','mountain','keyboard','window',
-  'car','city','cloud','forest','ocean','coffee','pizza','guitar','laptop','phone',
-  'star','space','rocket','zebra','panda','quartz','galaxy','ninja','sushi','robot'
-];
-
-function generatePassphrase(count) {
-  const array = new Uint32Array(count);
-  window.crypto.getRandomValues(array);
-  const words = [];
-  for (let i = 0; i < count; i++) {
-    words.push(WORD_LIST[array[i] % WORD_LIST.length]);
-  }
-  return words.join('-');
-}
-
-async function copyText(text, btn) {
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.left = '-9999px';
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
     }
     const original = btn.textContent;
     btn.textContent = 'Copied!';
@@ -185,6 +125,4 @@ document.addEventListener('DOMContentLoaded', () => {
       copyText(output.value, copyBtn, output);
     }
   });
-=======
-  copyBtn.addEventListener('click', () => copyText(output.value, copyBtn));
 });
