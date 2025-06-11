@@ -53,6 +53,7 @@ function generatePassphrase(count) {
   if (opts.symbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
   if (!chars) chars = lower;
   const array = new Uint32Array(length);
+
   window.crypto.getRandomValues(array);
   const words = [];
   for (let i = 0; i < count; i++) {
@@ -61,6 +62,15 @@ function generatePassphrase(count) {
   return words.join('-');
 }
 
+async function copyText(text, btn, input) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else if (input) {
+      input.focus();
+      input.select();
+      document.execCommand('copy');
+      input.setSelectionRange(0, 0);
 async function copyText(text, btn) {
   try {
     if (navigator.clipboard && window.isSecureContext) {
@@ -141,10 +151,12 @@ document.addEventListener('DOMContentLoaded', () => {
       lenLabel.childNodes[0].nodeValue = 'Words:';
       lenInput.min = 2;
       lenInput.max = 10;
+      if (lenInput.value < 2 || lenInput.value > 10) lenInput.value = 4;
     } else {
       lenLabel.childNodes[0].nodeValue = 'Length:';
       lenInput.min = 8;
       lenInput.max = 64;
+      if (lenInput.value < 8 || lenInput.value > 64) lenInput.value = 16;
     }
   }
 
@@ -168,5 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  copyBtn.addEventListener('click', () => {
+    if (output.value) {
+      copyText(output.value, copyBtn, output);
+    }
+  });
+=======
   copyBtn.addEventListener('click', () => copyText(output.value, copyBtn));
 });
