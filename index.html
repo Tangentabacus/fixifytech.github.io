@@ -60,23 +60,31 @@
     <section id="home" class="fade-in">
       <div class="card hero-card">
         <h1 class="hero-title" style="font-size:2.35rem;line-height:1.13;font-weight:700;letter-spacing:-0.01em;">Premium IT Solutions and Support</h1>
-        <div class="hero-subtitle" style="font-size:1.25rem;font-weight:500;color:var(--steel);margin-top:0.3rem;margin-bottom:1.1rem;line-height:1.2;">Small Business, Healthcare and Clinics, Home Users</div>
-        <p class="hero-desc">Empowering you to run smooth, secure, and efficient IT systems—without stress or fluff. Get expert help with Microsoft 365, HIPAA compliance, networking, servers, and more. Anchorage, Alaska & remote support available.</p>
+        <div class="hero-subtitle" style="font-size:1.25rem;font-weight:500;color:var(--steel);margin-top:0.3rem;margin-bottom:1.1rem;line-height:1.2;">Small Business, Home Office, Hospitality, Healthcare, Clinics, Home Users, and more!</div>
+        <p class="hero-desc">Empowering you to run smooth, secure, and efficient IT systems—without stress or fluff. Get expert help with Microsoft 365, HIPAA compliance, networking, servers, and more. Servicing Anchorage, Alaska with remote support available.</p>
         <div id="hero-contact">
-          <form action="https://formspree.io/f/your-form-id" method="POST" autocomplete="off">
+          <form action="https://formsubmit.co/fixifytechak@gmail.com" method="POST" autocomplete="off">
+            <input type="hidden" name="_subject" value="New Fixify Tech Contact Submission!">
+            <input type="hidden" name="_next" value="https://fixifytech.com">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="true">
             <div class="grid">
-              <div>
+              <div style="width:95%;">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
               </div>
-              <div>
+              <div style="width:95%;">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
               </div>
             </div>
-            <label for="message">Message</label>
+            <div style="width:100%;margin:0 auto 0.7rem auto;">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" pattern="[0-9\-\+\(\) ]{7,}" autocomplete="tel" placeholder="(555) 123-4567" style="width:100%;">
+            </div>
+            <label for="message">How can we help you?</label>
             <textarea id="message" name="message" rows="5" required></textarea>
-            <button type="submit" class="btn" style="width:100%;">Send Message</button>
+            <button type="submit" class="btn" style="width:100%;">Let's Get Started!</button>
           </form>
         </div>
       </div>
@@ -258,7 +266,9 @@
         <img src="media/logo.png" alt="Fixify Tech Logo" class="footer-logo" />
         <span class="footer-title">Fixify Tech</span>
       </div>
-      <!-- Footer links removed as requested -->
+      <div class="footer-links">
+        <a href="mailto:fixifytechak@gmail.com" class="footer-link">fixifytechak@gmail.com</a>
+      </div>
       <div class="footer-copy">&copy; 2025 Fixify Tech. All rights reserved.</div>
     </div>
   </footer>

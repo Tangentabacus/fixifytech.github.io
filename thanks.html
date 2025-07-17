@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You! | Fixify Tech</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe066 0%, #b5ead7 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+      margin: 0;
+    }
+    .thankyou-container {
+      background: rgba(255,255,255,0.95);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      padding: 3rem 2.5rem 2.5rem 2.5rem;
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .confetti {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .thankyou-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffb300;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.01em;
+      z-index: 2;
+      position: relative;
+    }
+    .thankyou-emoji {
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+      animation: bounce 1.2s infinite alternate cubic-bezier(.68,-0.55,.27,1.55);
+      z-index: 2;
+      position: relative;
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-18px); }
+    }
+    .thankyou-message {
+      font-size: 1.18rem;
+      color: #333;
+      margin-bottom: 1.2rem;
+      z-index: 2;
+      position: relative;
+    }
+    .redirect-msg {
+      font-size: 1.05rem;
+      color: #666;
+      margin-top: 1.2rem;
+      z-index: 2;
+      position: relative;
+    }
+    #timer {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #ff6f91;
+      margin: 0 0.2em;
+      transition: color 0.3s;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="thankyou-container">
+    <canvas class="confetti"></canvas>
+    <div class="thankyou-emoji">🎉✨</div>
+    <div class="thankyou-title">Thank You!</div>
+    <div class="thankyou-message">Your message has been sent and a Fixify Tech human will be in touch soon.<br>We appreciate you reaching out!</div>
+    <div class="redirect-msg">Redirecting you to the home page in <span id="timer">10</span> seconds...</div>
+  </div>
+  <script>
+    // Simple confetti effect
+    const canvas = document.querySelector('.confetti');
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0;
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    const confettiColors = ['#ffe066','#ffb300','#b5ead7','#ff6f91','#6a89cc','#f7cac9','#f9f871'];
+    const confetti = Array.from({length: 60}, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: 6 + Math.random() * 10,
+      d: 2 + Math.random() * 2,
+      color: confettiColors[Math.floor(Math.random()*confettiColors.length)],
+      tilt: Math.random() * 10 - 5,
+      tiltAngle: 0,
+      tiltAngleInc: 0.05 + Math.random() * 0.07
+    }));
+    function drawConfetti() {
+      ctx.clearRect(0,0,W,H);
+      confetti.forEach(c => {
+        ctx.beginPath();
+        ctx.ellipse(c.x, c.y, c.r, c.r/2, c.tilt, 0, 2*Math.PI);
+        ctx.fillStyle = c.color;
+        ctx.fill();
+      });
+    }
+    function updateConfetti() {
+      confetti.forEach(c => {
+        c.y += c.d;
+        c.x += Math.sin(c.tilt);
+        c.tiltAngle += c.tiltAngleInc;
+        c.tilt = Math.sin(c.tiltAngle) * 10;
+        if (c.y > H + 20) {
+          c.y = -10;
+          c.x = Math.random() * W;
+        }
+      });
+    }
+    function animate() {
+      drawConfetti();
+      updateConfetti();
+      requestAnimationFrame(animate);
+    }
+    animate();
+    // Timer and redirect
+    let seconds = 10;
+    const timerSpan = document.getElementById('timer');
+    const interval = setInterval(() => {
+      seconds--;
+      timerSpan.textContent = seconds;
+      // Animate color for last 5 seconds
+      if (seconds <= 5) {
+        timerSpan.style.color = '#ff1744';
+      } else {
+        timerSpan.style.color = '#ff6f91';
+      }
+      if (seconds <= 0) {
+        clearInterval(interval);
+        window.location.href = '/';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
