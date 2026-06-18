@@ -38,46 +38,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Hamburger and Nav Theme Update ---
-// Updates hamburger menu and nav colors for current theme
-function updateHamburgerAndNavTheme() {
-  const navToggle = document.getElementById('nav-toggle');
-  if (navToggle) {
-    const hamburger = navToggle.querySelector('.hamburger');
-    if (hamburger) {
-      hamburger.style.background = getComputedStyle(document.body).getPropertyValue('--nav-text');
-    }
-  }
-  const navLinks = document.getElementById('nav-links');
-  if (navLinks) {
-    navLinks.style.background = getComputedStyle(document.body).getPropertyValue('--nav-bg');
-    navLinks.style.color = getComputedStyle(document.body).getPropertyValue('--nav-text');
-  }
-}
+// Nav and hamburger colors are now driven entirely by CSS variables
+// (--nav-bg / --nav-text), which update automatically on theme change.
+// Kept as a no-op so existing listeners/calls remain safe.
+function updateHamburgerAndNavTheme() {}
 // Listen for custom themechange event
 document.body.addEventListener('themechange', updateHamburgerAndNavTheme);
 // --- SPA Section Show/Hide Logic ---
-// SPA section show/hide logic for homepage/resources
+// SPA section show/hide logic for homepage/resources.
+// HOME_SECTIONS lists every top-level homepage section so they are toggled
+// together when switching between the homepage and the Resources page.
+const HOME_SECTIONS = ['home', 'industries', 'why', 'services', 'resources-promo'];
+
 function showSection(sectionId) {
-  // Hide all SPA sections
-  document.querySelectorAll('.spa-page').forEach(sec => sec.style.display = 'none');
-  // Show the requested section
-  const section = document.getElementById(sectionId);
-  if (section) section.style.display = 'block';
-  // Hide promo card if on resources page
-  const promo = document.getElementById('resources-promo');
-  if (promo) promo.style.display = (sectionId === 'resources') ? 'none' : 'block';
-  // Show/hide main homepage sections
-  const home = document.getElementById('home');
-  const services = document.getElementById('services');
-  const about = document.getElementById('about');
+  const resources = document.getElementById('resources');
   if (sectionId === 'resources') {
-    if (home) home.style.display = 'none';
-    if (services) services.style.display = 'none';
-    if (about) about.style.display = 'none';
+    HOME_SECTIONS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    if (resources) resources.style.display = 'block';
   } else {
-    if (home) home.style.display = 'block';
-    if (services) services.style.display = 'block';
-    if (about) about.style.display = 'block';
+    HOME_SECTIONS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = '';
+    });
+    if (resources) resources.style.display = 'none';
   }
 }
 
@@ -111,6 +97,44 @@ function attachSpaNavHandlers() {
     link.removeEventListener('click', handleSpaNavClick); // Prevent duplicate handlers
     link.addEventListener('click', handleSpaNavClick);
   });
+}
+
+// --- Mobile Hamburger Menu Toggle ---
+// Opens/closes the collapsed navigation on small screens.
+function setupMobileNav() {
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (!navToggle || !navLinks) return;
+
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Close the menu after tapping any nav link.
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close when clicking outside the nav.
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (e.target.closest('#main-nav')) return;
+    closeMenu();
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupMobileNav);
+} else {
+  setupMobileNav();
 }
 
 // Attach handlers on DOMContentLoaded and after any SPA navigation that might re-render links

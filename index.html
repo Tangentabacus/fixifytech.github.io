@@ -11,26 +11,24 @@
     gtag('js', new Date());
     gtag('config', 'G-1BT0RR5BG2');
   </script>
-  <title>Fixify Tech | IT Solutions & Support</title>
-  <!--
-    SPA navigation, password generator, curated resources, and more
-  -->
-  <meta name="description" content="Fixify Tech: IT support, Microsoft 365, HIPAA compliance, server setups, networking, and more. Anchorage, Alaska." />
-  <meta name="keywords" content="IT, Microsoft 365, HIPAA, Unraid, Proxmox, Networking, Fixify Tech, Anchorage, Tech Support, Paramedic, Consultant" />
-  <meta property="og:title" content="Fixify Tech | IT Solutions & Support" />
-  <meta property="og:description" content="Fixify Tech: IT support, Microsoft 365, HIPAA compliance, server setups, networking, and more. Anchorage, Alaska." />
+  <title>Fixify Tech | IT Solutions &amp; Support in Anchorage, Alaska</title>
+  <meta name="description" content="Fixify Tech provides premium IT support for small business, healthcare, hospitality, and home offices in Anchorage, Alaska. Ubiquiti/UniFi networking, custom PCs and workstations, Microsoft 365, HIPAA compliance, backups, and security. Remote support available." />
+  <meta name="keywords" content="IT support Anchorage, Ubiquiti, UniFi, networking, Microsoft 365, HIPAA, custom PC, workstation, server, Fixify Tech, Alaska, small business IT" />
+  <meta property="og:title" content="Fixify Tech | IT Solutions &amp; Support" />
+  <meta property="og:description" content="Premium IT support, networking, custom builds, and compliance for small business, healthcare, and home offices. Anchorage, Alaska with remote support." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="media/logo.png" />
-  <meta property="og:url" content="https://fixifytech.github.io/" />
+  <meta property="og:url" content="https://fixifytech.com/" />
   <!-- Favicon and PWA manifest -->
   <link rel="icon" type="image/png" sizes="32x32" href="media/favicon/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="media/favicon/apple-touch-icon.png" />
   <link rel="manifest" href="media/favicon/site.webmanifest" />
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css" />
-  <!-- Styles moved to styles.css -->
 </head>
 <body>
   <div class="container">
@@ -40,118 +38,195 @@
         <a href="#home" id="logo-link">
           <img src="media/logo.png" alt="Fixify Tech Logo" id="logo-img" />
         </a>
-        <span class="site-title" id="logo-title" style="display:none;">Fixify Tech</span>
+        <span class="site-title" id="logo-title">Fixify Tech</span>
       </div>
-      <span class="site-title" id="site-title-main" style="display:none;">Fixify Tech</span>
       <nav id="main-nav">
         <!-- Hamburger menu for mobile navigation -->
-        <button id="nav-toggle" class="nav-toggle" aria-label="Open navigation" aria-expanded="false" style="display:none;">
+        <button id="nav-toggle" class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
           <span class="hamburger"></span>
         </button>
         <div id="nav-links" class="nav-links">
           <a href="#home" class="active">Home</a>
           <a href="#services">Services</a>
-          <!-- <a href="#about">About</a> -->
           <a href="#resources">Resources</a>
-          <a href="https://www.facebook.com/fixifytech" class="nav-facebook" target="_blank" rel="noopener" aria-label="Visit Fixify Tech on Facebook" style="display:inline-flex;align-items:center;gap:0.4em;font-weight:600;font-size:1.1rem;color:#1877f3;line-height:1.7;vertical-align:middle;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1877f3" style="display:inline-block;vertical-align:middle;"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
-            <span style="color:#1877f3;display:inline-block;vertical-align:middle;">Facebook</span>
+          <a href="https://www.facebook.com/fixifytech" class="nav-facebook" target="_blank" rel="noopener" aria-label="Visit Fixify Tech on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1877f3" aria-hidden="true"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+            <span>Facebook</span>
           </a>
           <!-- Theme toggle button (dark/light mode) -->
           <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
         </div>
       </nav>
-      <!-- Gold underline for nav bar -->
       <div class="nav-underline"></div>
     </header>
+
     <!-- ================= HERO SECTION ================= -->
     <section id="home" class="fade-in">
-      <div class="card hero-card">
-        <h1 class="hero-title" style="font-size:2.35rem;line-height:1.13;font-weight:700;letter-spacing:-0.01em;">Premium IT Solutions and Support</h1>
-        <div class="hero-subtitle" style="font-size:1.25rem;font-weight:500;color:var(--steel);margin-top:0.3rem;margin-bottom:1.1rem;line-height:1.2;">Small Business, Home Office, Hospitality, Healthcare, Clinics, Home Users, and more!</div>
-        <p class="hero-desc">Empowering you to run smooth, secure, and efficient IT systems—without stress or fluff. Get expert help with Microsoft 365, HIPAA compliance, networking, servers, and more. Servicing Anchorage, Alaska with remote support available.</p>
-        <div id="hero-contact">
-          <form action="https://formsubmit.co/fixifytechak@gmail.com" method="POST" autocomplete="off">
-            <input type="hidden" name="_subject" value="New Fixify Tech Contact Submission!">
-            <input type="hidden" name="_next" value="https://fixifytech.com">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="true">
-            <div class="grid">
-              <div style="width:95%;">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-              </div>
-              <div style="width:95%;">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-              </div>
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <span class="hero-eyebrow">📍 Anchorage, AK · Remote support available</span>
+            <h1 class="hero-title">Premium IT that just <span class="accent">works</span>.</h1>
+            <p class="hero-desc">Smooth, secure, and reliable technology for your business or home office—without the stress or the fluff. From networking and custom builds to Microsoft 365 and compliance, you get an honest expert who handles it end to end.</p>
+            <div class="hero-chips">
+              <span class="chip">Small Business</span>
+              <span class="chip">Healthcare &amp; Clinics</span>
+              <span class="chip">Hospitality</span>
+              <span class="chip">Home &amp; Home Office</span>
             </div>
-            <div style="width:100%;margin:0 auto 0.7rem auto;">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" pattern="[0-9\-\+\(\) ]{7,}" autocomplete="tel" placeholder="(555) 123-4567" style="width:100%;">
-            </div>
-            <label for="message">How can we help you?</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            <button type="submit" class="btn" style="width:100%;">Let's Get Started!</button>
-          </form>
+          </div>
+
+          <div id="hero-contact" class="hero-form">
+            <h2>Let's get started</h2>
+            <p class="form-note">Tell me what you need and I'll get back to you. No pressure, no jargon.</p>
+            <form action="https://formsubmit.co/fixifytechak@gmail.com" method="POST" autocomplete="off">
+              <input type="hidden" name="_subject" value="New Fixify Tech Contact Submission!">
+              <input type="hidden" name="_next" value="https://fixifytech.com/thanks.html">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="true">
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9\-\+\(\) ]{7,}" autocomplete="tel" placeholder="(555) 123-4567">
+              </div>
+              <div class="field">
+                <label for="message">How can we help you?</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn">Request My Free Consult</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INDUSTRIES SERVED ================= -->
+    <section id="industries" class="fade-in">
+      <div class="section-head">
+        <span class="eyebrow">Who I help</span>
+        <h2 class="section-title">Built for the way you work</h2>
+        <p class="section-sub">Real-world experience across the environments that depend on tech being done right.</p>
+      </div>
+      <div class="industry-grid">
+        <div class="industry-card">
+          <span class="industry-icon">🏢</span>
+          <span class="label">Small Business</span>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">🏥</span>
+          <span class="label">Healthcare &amp; Clinics</span>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">🏨</span>
+          <span class="label">Hospitality</span>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">💼</span>
+          <span class="label">Home Office</span>
+        </div>
+        <div class="industry-card">
+          <span class="industry-icon">🏠</span>
+          <span class="label">Home Users</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY FIXIFY ================= -->
+    <section id="why" class="fade-in">
+      <div class="section-head">
+        <span class="eyebrow">Why Fixify Tech</span>
+        <h2 class="section-title">Straightforward, secure, done right</h2>
+      </div>
+      <div class="value-grid">
+        <div class="value-card">
+          <span class="value-icon">🤝</span>
+          <h3>Honest advice, no fluff</h3>
+          <p>Clear recommendations and fair guidance—no upselling you on things you don't need.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🛡️</span>
+          <h3>Security &amp; compliance minded</h3>
+          <p>Network hardening, backups, and HIPAA-aware practices for clinics and regulated work.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🧰</span>
+          <h3>End to end</h3>
+          <p>Plan, build, install, and support—one point of contact from cabling to the desktop.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">⚡</span>
+          <h3>Local &amp; remote</h3>
+          <p>On-site across Anchorage, plus fast remote support when you just need a quick fix.</p>
         </div>
       </div>
     </section>
 
     <!-- ================= SERVICES SECTION ================= -->
-    <!-- Services offered by Fixify Tech -->
     <section id="services" class="fade-in">
-      <h2 class="section-title" style="margin-bottom:2.2rem;">Services</h2>
-      <div class="services-list" style="display:flex;flex-direction:column;gap:2.2rem;">
+      <div class="section-head">
+        <span class="eyebrow">What I do</span>
+        <h2 class="section-title">Services</h2>
+        <p class="section-sub">Everything below is something I personally handle for clients—no outsourcing, no guesswork.</p>
+      </div>
+      <div class="services-list">
         <!-- Ubiquiti Installations & Support (Image Left) -->
-        <div class="service-card card" style="display:flex;align-items:center;gap:2.2rem;">
-          <img src="media/networking.jpeg" alt="Ubiquiti Installations" style="width:200px;height:200px;object-fit:cover;flex-shrink:0;display:block;margin-left:0;border-radius:10px;" />
-          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-            <h3 style="font-size:1.25rem;color:var(--gold);margin-bottom:0.5rem;">Ubiquiti Installations & Support</h3>
-            <div class="card-body-text">Specializing in Ubiquiti UniFi systems for homes, clinics, and small businesses. From Wi-Fi to security gateways, I provide expert installation, configuration, and troubleshooting for reliable, high-performance networks. Get the most out of your Ubiquiti network.</div>
+        <div class="service-card card">
+          <img src="media/networking.jpeg" alt="Ubiquiti UniFi networking installation" loading="lazy" />
+          <div class="service-body">
+            <h3>Ubiquiti Installations &amp; Support</h3>
+            <p class="card-body-text">Specializing in Ubiquiti UniFi systems for homes, clinics, and small businesses. From Wi-Fi to security gateways, I provide expert installation, configuration, and troubleshooting for reliable, high-performance networks—so you get the most out of your Ubiquiti gear.</p>
           </div>
         </div>
         <!-- Networking Hardware & Rack Installations (Image Right) -->
-        <div class="service-card card" style="display:flex;align-items:center;gap:2.2rem;flex-direction:row-reverse;">
-          <img src="media/rack.jpeg" alt="Networking Hardware and Rack Installations" style="width:200px;height:200px;object-fit:cover;flex-shrink:0;display:block;margin-right:0;border-radius:10px;" />
-          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-            <h3 style="font-size:1.25rem;color:var(--gold);margin-bottom:0.5rem;">Networking Hardware & Rack Installations</h3>
-            <div class="card-body-text">Professional installation and organization of networking hardware, racks, patch panels, and structured cabling. Clean, reliable, and future-proof setups for offices, clinics, and home labs. We ensure your network is robust, tidy, and easy to maintain.</div>
+        <div class="service-card card reverse">
+          <img src="media/rack.jpeg" alt="Networking hardware and rack installation" loading="lazy" />
+          <div class="service-body">
+            <h3>Networking Hardware &amp; Rack Installations</h3>
+            <p class="card-body-text">Professional installation and organization of networking hardware, racks, patch panels, and structured cabling. Clean, reliable, and future-proof setups for offices, clinics, and home labs—robust, tidy, and easy to maintain.</p>
           </div>
         </div>
         <!-- Custom Workstation Building & Support (Image Left) -->
-        <div class="service-card card" style="display:flex;align-items:center;gap:2.2rem;">
-          <img src="media/workstation.jpeg" alt="Custom Workstation Building and Support" style="width:200px;height:200px;object-fit:cover;flex-shrink:0;display:block;margin-left:0;border-radius:10px;" />
-          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-            <h3 style="font-size:1.25rem;color:var(--gold);margin-bottom:0.5rem;">Custom Workstation Building & Support</h3>
-            <div class="card-body-text">Design and build high-performance workstations tailored to your workflow—whether for creative, medical, or technical use. Offering hardware consulting, assembly, and ongoing support to keep your systems running at their best.</div>
+        <div class="service-card card">
+          <img src="media/workstation.jpeg" alt="Custom workstation building and support" loading="lazy" />
+          <div class="service-body">
+            <h3>Custom Workstation Building &amp; Support</h3>
+            <p class="card-body-text">Design and build high-performance workstations tailored to your workflow—whether for creative, medical, or technical use. Hardware consulting, assembly, and ongoing support to keep your systems running at their best.</p>
           </div>
         </div>
         <!-- New Construction & Retrofit Consultation (Image Right) -->
-        <div class="service-card card" style="display:flex;align-items:center;gap:2.2rem;flex-direction:row-reverse;">
-          <img src="media/rack2.jpeg" alt="New Construction or Retrofit Consultation" style="width:200px;height:200px;object-fit:cover;flex-shrink:0;display:block;margin-right:0;border-radius:10px;" />
-          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-            <h3 style="font-size:1.25rem;color:var(--gold);margin-bottom:0.5rem;">New Construction & Retrofit Consultation</h3>
-            <div class="card-body-text">Planning a new build or upgrading an existing space? We provide IT and networking consultation for new construction and retrofits—ensuring your infrastructure is ready for today and tomorrow. Get expert advice on wiring, placement, and future-proofing.</div>
+        <div class="service-card card reverse">
+          <img src="media/rack2.jpeg" alt="New construction and retrofit IT consultation" loading="lazy" />
+          <div class="service-body">
+            <h3>New Construction &amp; Retrofit Consultation</h3>
+            <p class="card-body-text">Planning a new build or upgrading an existing space? I provide IT and networking consultation for new construction and retrofits—getting your infrastructure ready for today and tomorrow with expert advice on wiring, placement, and future-proofing.</p>
           </div>
         </div>
         <!-- Custom PC Building, Repair & Troubleshooting (Image Left) -->
-        <div class="service-card card" style="display:flex;align-items:center;gap:2.2rem;">
-          <img src="media/custompc2.jpeg" alt="Custom PC Building, Repair, and Troubleshooting" style="width:200px;height:200px;object-fit:cover;flex-shrink:0;display:block;margin-left:0;border-radius:10px;" />
-          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-            <h3 style="font-size:1.25rem;color:var(--gold);margin-bottom:0.5rem;">Custom PC Building, Repair & Troubleshooting</h3>
-            <div class="card-body-text">From gaming rigs to professional desktops, we build, repair, and troubleshoot custom PCs. Fast diagnostics, quality parts, and honest advice—get your system running like new or upgrade for the next level of performance.</div>
+        <div class="service-card card">
+          <img src="media/custompc2.jpeg" alt="Custom PC building, repair, and troubleshooting" loading="lazy" />
+          <div class="service-body">
+            <h3>Custom PC Building, Repair &amp; Troubleshooting</h3>
+            <p class="card-body-text">From gaming rigs to professional desktops, I build, repair, and troubleshoot custom PCs. Fast diagnostics, quality parts, and honest advice—get your system running like new or upgrade for the next level of performance.</p>
           </div>
         </div>
         <!-- Premium IT Consulting and Support (Bulleted List, No Image) -->
-        <div class="service-card card" style="padding:2.2rem 2rem;">
-          <h3 style="font-size:1.25rem;color:var(--gold);margin-bottom:0.7rem;">Premium IT Consulting and Support</h3>
+        <div class="service-card card full">
+          <h3>Premium IT Consulting &amp; Support</h3>
           <ul class="card-body-list">
-            <li>Experienced with hospitality, healthcare, and small business IT environments</li>
-            <li>On-site and remote backup solutions for business continuity</li>
+            <li>Hospitality, healthcare, and small business IT environments</li>
+            <li>On-site and remote backup for business continuity</li>
             <li>Automation, data collection, and workflow optimization</li>
-            <li>Security and surveillance solutions, including camera systems and access control</li>
-            <li>Enterprise software support: RingCentral, Samsara, Microsoft 365, and more</li>
+            <li>Security &amp; surveillance: camera systems and access control</li>
+            <li>Enterprise software: RingCentral, Samsara, Microsoft 365, and more</li>
             <li>HIPAA and regulatory compliance consulting</li>
             <li>Remote and on-site troubleshooting and support</li>
             <li>Network and endpoint security hardening</li>
@@ -162,124 +237,119 @@
       </div>
     </section>
 
-
-
-
-    <!-- ================= RESOURCES PROMO CARD ================= -->
+    <!-- ================= CTA BAND ================= -->
     <section id="resources-promo" class="fade-in">
-      <div class="card">
-        <h2 class="section-title">Need More Help? Explore the Resources Page</h2>
-        <div style="text-align:center;">
-          <a href="#resources" class="btn">Go to Resources</a>
-        </div>
+      <div class="cta-band">
+        <h2>Ready to make your tech just work?</h2>
+        <p>Tell me what's going on and I'll point you in the right direction—Anchorage and remote.</p>
+        <a href="#home" class="btn">Get Started</a>
+        <a href="#resources" class="btn btn-ghost" style="margin-left:0.6rem;">Free Resources &amp; Tools</a>
       </div>
     </section>
-
-    <!-- Resources section removed from homepage. Only accessible as its own page via navigation. -->
 
     <!-- ================= RESOURCES FULL PAGE (SPA PAGE) ================= -->
     <section id="resources" class="fade-in spa-page" style="display:none;">
       <div class="container" style="max-width:900px;">
-        <div class="blog-header" style="text-align:center;margin-top:0;margin-bottom:2.2rem;">
-          <h1 style="font-size:2.2rem;color:var(--gold);font-family:'Poppins','Inter',Arial,sans-serif;margin-bottom:0.7rem;">Resources & Help Guides</h1>
-          <p class="card-body-text" style="max-width:600px;margin:0 auto;">My favorite guides, troubleshooting tips, and knowledge bases for IT, Microsoft 365, HIPAA, networking, and more. These are the links I use and recommend for DIY and pro support. Simple, straightforward, and always up to date.</p>
+        <div class="blog-header">
+          <span class="eyebrow">Free for everyone</span>
+          <h1>Resources &amp; Help Guides</h1>
+          <p class="section-sub" style="max-width:600px;margin:0 auto;">My favorite guides, troubleshooting tips, and a handy password tool for IT, Microsoft 365, HIPAA, and networking. Simple, straightforward, and always up to date.</p>
         </div>
-        <!-- Password Generator directly below header (SPA only) -->
-        <div class="card" style="margin-bottom:2.2rem;">
-          <h2 class="section-title" style="margin-bottom:1rem;">Password & Key Generator</h2>
-          <form id="pwgen-form" autocomplete="off" style="margin-bottom:0.7rem;">
-            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem;margin-bottom:1.2rem;">
-              <label for="pwgen-type">Type:</label>
-              <select id="pwgen-type" style="padding:0.4rem 0.7rem;border-radius:7px;border:1.5px solid var(--border);">
-                <option value="password">Password</option>
-                <option value="wifi">Wi-Fi Key</option>
-                <option value="hex">Random Hex</option>
-                <option value="base64">Random Base64</option>
-                <option value="pin">PIN</option>
-                <option value="passphrase">Passphrase</option>
-              </select>
-              <label for="pw-length">Length:</label>
-              <input type="number" id="pw-length" min="4" max="64" value="16" style="width:70px;padding:0.4rem 0.7rem;border-radius:7px;border:1.5px solid var(--border);">
+
+        <!-- Password Generator -->
+        <div class="card pwgen-card" style="margin-bottom:1.6rem;">
+          <h2 class="section-title">Password &amp; Key Generator</h2>
+          <form id="pwgen-form" autocomplete="off">
+            <div class="pwgen-controls">
+              <label for="pwgen-type">Type:
+                <select id="pwgen-type">
+                  <option value="password">Password</option>
+                  <option value="wifi">Wi-Fi Key</option>
+                  <option value="hex">Random Hex</option>
+                  <option value="base64">Random Base64</option>
+                  <option value="pin">PIN</option>
+                  <option value="passphrase">Passphrase</option>
+                </select>
+              </label>
+              <label for="pw-length">Length:
+                <input type="number" id="pw-length" min="4" max="64" value="16" style="width:70px;">
+              </label>
               <label><input type="checkbox" id="pw-uppercase" checked> Uppercase</label>
               <label><input type="checkbox" id="pw-numbers" checked> Numbers</label>
               <label><input type="checkbox" id="pw-symbols" checked> Symbols</label>
               <label><input type="checkbox" id="pw-exclude-similar"> Exclude Similar</label>
               <label><input type="checkbox" id="pw-exclude-ambig"> Exclude Ambiguous</label>
               <label><input type="checkbox" id="pw-require-all" checked> Require All Types</label>
-              <button class="btn" id="gen-btn" type="button" style="padding:0.5rem 1.2rem;font-size:1rem;">Generate</button>
+              <button class="btn" id="gen-btn" type="button" style="padding:0.55rem 1.3rem;">Generate</button>
             </div>
-            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.7rem;">
-              <input type="text" id="pw-output" readonly style="width:320px;max-width:100%;padding:0.6rem 0.8rem;border-radius:7px;border:1.5px solid var(--border);font-size:1.08rem;">
-              <button class="btn" id="copy-btn" type="button" style="padding:0.5rem 1.2rem;font-size:1rem;">Copy</button>
-              <span id="pw-feedback" style="font-size:1rem;color:var(--gold);"></span>
+            <div class="pwgen-output-row">
+              <input type="text" id="pw-output" readonly>
+              <button class="btn btn-ghost" id="copy-btn" type="button" style="padding:0.55rem 1.3rem;">Copy</button>
+              <span id="pw-feedback"></span>
             </div>
-            <div id="pw-strength" style="font-size:1rem;margin-bottom:0.5rem;"></div>
+            <div id="pw-strength"></div>
           </form>
         </div>
+
         <!-- Curated resource cards -->
-        <div class="resource-list" style="display:flex;flex-direction:column;gap:2rem;margin-bottom:3rem;">
-          <div class="resource-card card" style="display:flex;align-items:center;gap:2.2rem;">
-            <img src="media/microsoft.png" alt="Microsoft Logo" style="width:80px;height:80px;object-fit:contain;flex-shrink:0;display:block;margin-left:0;" />
-            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-              <h2 style="font-size:1.35rem;color:var(--gold);margin-bottom:0.5rem;">Microsoft Knowledge Base Articles (End Users)</h2>
-              <p class="card-body-text" style="margin-bottom:1.2rem;">The official Microsoft Knowledge Base is a searchable collection of troubleshooting guides, how-tos, and technical articles for Windows, Office, and other Microsoft products. Use this resource to resolve common issues, find step-by-step solutions, and access up-to-date support directly from Microsoft. Great for both beginners and advanced users.</p>
-              <div style="width:100%;display:flex;justify-content:center;">
-                <a href="https://support.microsoft.com/en-us/search?query=knowledge%20base" target="_blank" class="btn" style="font-size:1.18rem;padding:1rem 2.5rem;margin-top:0.2rem;">Browse KB Articles</a>
-              </div>
+        <div class="resource-list">
+          <div class="resource-card card">
+            <img src="media/microsoft.png" alt="Microsoft Logo" loading="lazy" />
+            <div class="resource-body">
+              <h2>Microsoft Knowledge Base (End Users)</h2>
+              <p class="card-body-text" style="margin-bottom:1rem;">The official Microsoft Knowledge Base is a searchable collection of troubleshooting guides, how-tos, and technical articles for Windows, Office, and other Microsoft products. Resolve common issues and find step-by-step solutions straight from Microsoft.</p>
+              <a href="https://support.microsoft.com/en-us/search?query=knowledge%20base" target="_blank" rel="noopener" class="btn">Browse KB Articles</a>
             </div>
           </div>
-          <div class="resource-card card" style="display:flex;align-items:center;gap:2.2rem;">
-            <img src="media/ubiquiti.png" alt="Ubiquiti Logo" style="width:80px;height:80px;object-fit:contain;flex-shrink:0;display:block;margin-left:0;" />
-            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-              <h2 style="font-size:1.35rem;color:var(--gold);margin-bottom:0.5rem;">Ubiquiti Knowledge Base</h2>
-              <p class="card-body-text" style="margin-bottom:1.2rem;">Ubiquiti’s official help center offers guides, troubleshooting steps, and best practices for UniFi, networking, and security products. Find answers to setup questions, firmware updates, Wi-Fi optimization, and advanced configuration. Ideal for anyone managing Ubiquiti hardware or looking to improve their network reliability and security.</p>
-              <div style="width:100%;display:flex;justify-content:center;">
-                <a href="https://help.ui.com/hc/en-us" target="_blank" class="btn" style="font-size:1.18rem;padding:1rem 2.5rem;margin-top:0.2rem;">Visit Ubiquiti KB</a>
-              </div>
+          <div class="resource-card card">
+            <img src="media/ubiquiti.png" alt="Ubiquiti Logo" loading="lazy" />
+            <div class="resource-body">
+              <h2>Ubiquiti Knowledge Base</h2>
+              <p class="card-body-text" style="margin-bottom:1rem;">Ubiquiti's official help center offers guides, troubleshooting steps, and best practices for UniFi, networking, and security products. Ideal for anyone managing Ubiquiti hardware or improving network reliability and security.</p>
+              <a href="https://help.ui.com/hc/en-us" target="_blank" rel="noopener" class="btn">Visit Ubiquiti KB</a>
             </div>
           </div>
-          <div class="resource-card card" style="display:flex;align-items:center;gap:2.2rem;">
-            <img src="media/cisa.svg" alt="CISA Logo" style="width:80px;height:80px;object-fit:contain;flex-shrink:0;display:block;margin-left:0;" />
-            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-              <h2 style="font-size:1.35rem;color:var(--gold);margin-bottom:0.5rem;">Cyber Security Checklist</h2>
-              <p class="card-body-text" style="margin-bottom:1.2rem;">CISA’s Cyber Essentials Toolkits provide actionable checklists and guidance for protecting your devices, accounts, and data from cyber threats. These resources are designed for small businesses, organizations, and individuals, covering topics like password management, software updates, backups, and incident response. Use this checklist to strengthen your cyber hygiene and reduce risk.</p>
-              <div style="width:100%;display:flex;justify-content:center;">
-                <a href="https://www.cisa.gov/resources-tools/resources/cyber-essentials-toolkits" target="_blank" class="btn" style="font-size:1.18rem;padding:1rem 2.5rem;margin-top:0.2rem;">View Checklist (CISA)</a>
-              </div>
+          <div class="resource-card card">
+            <img src="media/cisa.svg" alt="CISA Logo" loading="lazy" />
+            <div class="resource-body">
+              <h2>Cyber Security Checklist</h2>
+              <p class="card-body-text" style="margin-bottom:1rem;">CISA's Cyber Essentials Toolkits provide actionable checklists for protecting your devices, accounts, and data—covering passwords, updates, backups, and incident response. Great for small businesses and individuals alike.</p>
+              <a href="https://www.cisa.gov/resources-tools/resources/cyber-essentials-toolkits" target="_blank" rel="noopener" class="btn">View Checklist (CISA)</a>
             </div>
           </div>
-          <div class="resource-card card" style="display:flex;align-items:center;gap:2.2rem;">
-            <img src="media/hhs.svg" alt="HHS Logo" style="width:80px;height:80px;object-fit:contain;flex-shrink:0;display:block;margin-left:0;" />
-            <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
-              <h2 style="font-size:1.35rem;color:var(--gold);margin-bottom:0.5rem;">HIPAA Cyber Security Resource</h2>
-              <p class="card-body-text" style="margin-bottom:1.2rem;">The U.S. Department of Health & Human Services (HHS) provides official guidance on the HIPAA Security Rule, including best practices for healthcare organizations and professionals. Learn how to safeguard patient data, comply with federal regulations, and implement effective security measures in clinics and medical offices. Essential for anyone handling protected health information (PHI).</p>
-              <div style="width:100%;display:flex;justify-content:center;">
-                <a href="https://www.hhs.gov/hipaa/for-professionals/security/guidance/index.html" target="_blank" class="btn" style="font-size:1.18rem;padding:1rem 2.5rem;margin-top:0.2rem;">Read HIPAA Guidance</a>
-              </div>
+          <div class="resource-card card">
+            <img src="media/hhs.svg" alt="HHS Logo" loading="lazy" />
+            <div class="resource-body">
+              <h2>HIPAA Cyber Security Resource</h2>
+              <p class="card-body-text" style="margin-bottom:1rem;">The U.S. Department of Health &amp; Human Services (HHS) provides official guidance on the HIPAA Security Rule, including best practices for safeguarding patient data (PHI). Essential for clinics and medical offices.</p>
+              <a href="https://www.hhs.gov/hipaa/for-professionals/security/guidance/index.html" target="_blank" rel="noopener" class="btn">Read HIPAA Guidance</a>
             </div>
-          </div>
           </div>
         </div>
+
         <!-- Back to Home button for SPA navigation -->
         <div style="text-align:center;margin-bottom:2.5rem;">
-          <button id="back-home-btn" class="btn" style="font-size:1.05rem;padding:0.7rem 2rem;">← Back to Home</button>
+          <button id="back-home-btn" class="btn btn-ghost">← Back to Home</button>
         </div>
       </div>
     </section>
 
     <!-- ================= FOOTER ================= -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <img src="media/logo.png" alt="Fixify Tech Logo" class="footer-logo" />
-        <span class="footer-title">Fixify Tech</span>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="media/logo.png" alt="Fixify Tech Logo" class="footer-logo" />
+          <span class="footer-title">Fixify Tech</span>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:fixifytechak@gmail.com" class="footer-link">fixifytechak@gmail.com</a>
+          <a href="https://www.facebook.com/fixifytech" target="_blank" rel="noopener" class="footer-link">Facebook</a>
+        </div>
+        <div class="footer-copy">Premium IT solutions &amp; support · Anchorage, Alaska &amp; remote</div>
+        <div class="footer-copy">&copy; 2025 Fixify Tech. All rights reserved.</div>
       </div>
-      <div class="footer-links">
-        <a href="mailto:fixifytechak@gmail.com" class="footer-link">fixifytechak@gmail.com</a>
-      </div>
-      <div class="footer-copy">&copy; 2025 Fixify Tech. All rights reserved.</div>
-    </div>
-  </footer>
+    </footer>
+  </div>
   <!-- Main JavaScript for SPA navigation, theming, and password generator -->
   <script src="scripts.js"></script>
 </body>
