@@ -1,162 +1,31 @@
-// ===============================
-// SPA Navigation, Nav Highlighting, and Hamburger Theme Logic
-// ===============================
-
-// --- SPA-aware Nav Highlighting ---
-// Highlights the correct nav link based on SPA state or hash
-function setActiveNavLink(hash) {
-  const navLinks = document.querySelectorAll('.nav-links a');
-  navLinks.forEach(link => link.classList.remove('active'));
-  // Always highlight Resources if resources section is visible (SPA page)
-  const resourcesSection = document.getElementById('resources');
-  if (resourcesSection && window.getComputedStyle(resourcesSection).display !== 'none') {
-    const resLink = document.querySelector('.nav-links a[href="#resources"]');
-    if (resLink) resLink.classList.add('active');
-    return;
-  }
-  // Otherwise, highlight based on hash
-  if (hash) {
-    const link = document.querySelector('.nav-links a[href="' + hash + '"]');
-    if (link) link.classList.add('active');
-  }
+const html = document.documentElement;
+const themeButton = document.getElementById('theme-toggle');
+function syncThemeButton() { if (themeButton) themeButton.setAttribute('aria-label', html.dataset.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'); }
+syncThemeButton();
+themeButton?.addEventListener('click', () => { html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('theme', html.dataset.theme); } catch (_) {} syncThemeButton(); });
+document.querySelectorAll('[data-year]').forEach(e => e.textContent = new Date().getFullYear());
+const menuButton = document.getElementById('nav-toggle');
+const menu = document.getElementById('nav-links');
+function closeMenu() { menu?.classList.remove('open'); menuButton?.setAttribute('aria-expanded','false'); menuButton?.setAttribute('aria-label','Open navigation'); }
+menuButton?.addEventListener('click', () => { const open = menu.classList.toggle('open'); menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label',open ? 'Close navigation' : 'Open navigation'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu?.classList.contains('open')) { closeMenu(); menuButton.focus(); } });
+document.addEventListener('click', e => { if (!e.target.closest('#main-nav')) closeMenu(); });
+function route(scroll = true) {
+  const home = document.getElementById('home-page'), resources = document.getElementById('resources');
+  if (!home || !resources) return;
+  const id = location.hash.slice(1) || 'home';
+  home.hidden = id === 'resources'; resources.hidden = id !== 'resources';
+  document.title = id === 'resources' ? 'Resources & Tools | Fixify Tech' : 'Fixify Tech | IT Solutions & Support in Anchorage, Alaska';
+  document.querySelectorAll('.nav-links a').forEach(a => { if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  closeMenu();
+  const target = document.getElementById(id) || document.getElementById('home');
+  if (scroll) { target.scrollIntoView({behavior:'instant',block:'start'}); target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); }
 }
-
-// Handles navigation events (hashchange, initial load)
-function handleNavigation(hash) {
-  setActiveNavLink(hash);
+if (document.getElementById('home-page')) {
+  window.addEventListener('hashchange', () => route());
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', () => { if (a.hash === location.hash) route(); closeMenu(); }));
+  route(Boolean(location.hash));
 }
-
-// Listen for hash changes and update nav highlighting
-window.addEventListener('hashchange', () => {
-  handleNavigation(window.location.hash || '#home');
-});
-
-// On DOM load, set initial nav state and theme for hamburger/nav
-document.addEventListener('DOMContentLoaded', () => {
-  handleNavigation(window.location.hash || '#home');
-  updateHamburgerAndNavTheme && updateHamburgerAndNavTheme();
-});
-
-// --- Hamburger and Nav Theme Update ---
-// Nav and hamburger colors are now driven entirely by CSS variables
-// (--nav-bg / --nav-text), which update automatically on theme change.
-// Kept as a no-op so existing listeners/calls remain safe.
-function updateHamburgerAndNavTheme() {}
-// Listen for custom themechange event
-document.body.addEventListener('themechange', updateHamburgerAndNavTheme);
-// --- SPA Section Show/Hide Logic ---
-// SPA section show/hide logic for homepage/resources.
-// HOME_SECTIONS lists every top-level homepage section so they are toggled
-// together when switching between the homepage and the Resources page.
-const HOME_SECTIONS = ['home', 'industries', 'why', 'services', 'resources-promo'];
-
-function showSection(sectionId) {
-  const resources = document.getElementById('resources');
-  if (sectionId === 'resources') {
-    HOME_SECTIONS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-    if (resources) resources.style.display = 'block';
-  } else {
-    HOME_SECTIONS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = '';
-    });
-    if (resources) resources.style.display = 'none';
-  }
-}
-
-// --- SPA Nav Link Click Handler ---
-// Handles SPA nav link clicks for smooth transitions
-function handleSpaNavClick(e) {
-  const href = this.getAttribute('href');
-  if (href === '#resources') {
-    e.preventDefault();
-    showSection('resources');
-    window.scrollTo(0, 0);
-    return;
-  }
-  if (href === '#home' || href === '#services' || href === '#about') {
-    e.preventDefault();
-    showSection('home'); // Always show all homepage sections
-    // Scroll to the correct section
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-    return;
-  }
-  // Let default anchor behavior happen for other links
-}
-
-// --- Attach SPA Nav Handlers ---
-// Attaches SPA nav click handlers to all anchor links
-function attachSpaNavHandlers() {
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.removeEventListener('click', handleSpaNavClick); // Prevent duplicate handlers
-    link.addEventListener('click', handleSpaNavClick);
-  });
-}
-
-// --- Mobile Hamburger Menu Toggle ---
-// Opens/closes the collapsed navigation on small screens.
-function setupMobileNav() {
-  const navToggle = document.getElementById('nav-toggle');
-  const navLinks = document.getElementById('nav-links');
-  if (!navToggle || !navLinks) return;
-
-  function closeMenu() {
-    navLinks.classList.remove('open');
-    navToggle.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  }
-
-  navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-
-  // Close the menu after tapping any nav link.
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Close when clicking outside the nav.
-  document.addEventListener('click', (e) => {
-    if (!navLinks.classList.contains('open')) return;
-    if (e.target.closest('#main-nav')) return;
-    closeMenu();
-  });
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupMobileNav);
-} else {
-  setupMobileNav();
-}
-
-// Attach handlers on DOMContentLoaded and after any SPA navigation that might re-render links
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', attachSpaNavHandlers);
-} else {
-  attachSpaNavHandlers();
-}
-
-// --- Back to Home Button Logic for SPA ---
-const backHomeBtn = document.getElementById('back-home-btn');
-if (backHomeBtn) {
-  backHomeBtn.addEventListener('click', function() {
-    showSection('home');
-    window.scrollTo(0, 0);
-  });
-}
-
-
-// ===============================
-// Modern Password Generator Logic (Rewritten)
-// ===============================
 
 // --- Utility: Copy text to clipboard ---
 function copyToClipboard(text, btn) {
@@ -167,7 +36,11 @@ function copyToClipboard(text, btn) {
         btn.textContent = 'Copied!';
         setTimeout(() => { btn.textContent = orig; }, 1200);
       }
+    }).catch(() => {
+      document.getElementById('pw-feedback').textContent = 'Select and copy the result manually.';
     });
+  } else {
+    document.getElementById('pw-feedback').textContent = 'Select and copy the result manually.';
   }
 }
 
@@ -233,7 +106,11 @@ function generatePassword(opts) {
   let out = '';
   // Ensure at least one of each required type if requested
   if (opts.requireAll && required.length > 0) {
-    for (let set of required) out += getRandomChar(set);
+    required.unshift(PW_CHARSETS.password.lower);
+    for (let set of required) {
+      const allowed = [...set].filter(c => charset.includes(c)).join('');
+      if (allowed) out += getRandomChar(allowed);
+    }
   }
   while (out.length < opts.length) out += getRandomChar(charset);
   return shuffle(out).slice(0, opts.length);
@@ -251,24 +128,18 @@ function generatePassphrase(opts) {
   }
   let sep = opts.separator || '-';
   let phrase = words.join(sep);
-  if (opts.addNumber) phrase += sep + Math.floor(Math.random() * 100);
-  if (opts.addSymbol) phrase += sep + '!@#$%^&*()'.charAt(Math.floor(Math.random() * 10));
+  if (opts.addNumber) phrase += sep + crypto.getRandomValues(new Uint32Array(1))[0] % 100;
+  if (opts.addSymbol) phrase += sep + '!@#$%^&*()'.charAt(crypto.getRandomValues(new Uint32Array(1))[0] % 10);
   return phrase;
 }
 
-function getStrength(pw) {
-  let score = 0;
-  if (!pw) return 0;
-  if (pw.length >= 12) score++;
-  if (/[A-Z]/.test(pw)) score++;
-  if (/[0-9]/.test(pw)) score++;
-  if (/[^A-Za-z0-9]/.test(pw)) score++;
-  if (pw.length >= 20) score++;
-  return Math.min(score, 4);
-}
 
 function updatePwgenUI() {
   const type = document.getElementById('pwgen-type').value;
+  const optionsPanel = document.getElementById('generator-options');
+  if (optionsPanel) optionsPanel.hidden = type !== 'password' && type !== 'wifi';
+  const lengthLabel = document.getElementById('length-label');
+  if (lengthLabel) lengthLabel.textContent = type === 'passphrase' ? 'Words:' : 'Length:';
   const lenInput = document.getElementById('pw-length');
   const upper = document.getElementById('pw-uppercase');
   const nums = document.getElementById('pw-numbers');
@@ -316,13 +187,15 @@ function updatePwgenUI() {
     reqAll.parentElement.style.display = 'none';
     lenInput.min = 3;
     lenInput.max = 10;
-    if (lenInput.value < 3) lenInput.value = 4;
+    if (lenInput.value < 3 || lenInput.value > 10) lenInput.value = 6;
   }
 }
 
 function handlePwgen() {
   const type = document.getElementById('pwgen-type').value;
-  const len = parseInt(document.getElementById('pw-length').value, 10);
+  const lengthInput = document.getElementById('pw-length');
+  const len = Math.max(Number(lengthInput.min), Math.min(Number(lengthInput.max), parseInt(lengthInput.value, 10) || Number(lengthInput.min)));
+  lengthInput.value = len;
   const opts = {
     type,
     length: len,
@@ -348,27 +221,19 @@ function handlePwgen() {
 }
 
 function updatePwStrength(pw) {
-  const bar = document.getElementById('pw-strength');
-  if (!bar) return;
-  const s = getStrength(pw);
-  bar.value = s;
-  bar.max = 4;
-  bar.className = '';
-  if (s === 1) bar.classList.add('weak');
-  if (s === 2) bar.classList.add('fair');
-  if (s === 3) bar.classList.add('good');
-  if (s === 4) bar.classList.add('strong');
-  const txt = document.getElementById('pw-feedback');
-  if (txt) {
-    txt.textContent = pw ? ['Weak','Fair','Good','Strong'][s-1] || '' : '';
-  }
+  document.getElementById('pw-feedback').textContent = pw ? 'New result ready' : '';
+  const isPhrase = document.getElementById('pwgen-type').value === 'passphrase';
+  document.getElementById('pw-strength').textContent = isPhrase
+    ? 'This tool uses a small word list. For important accounts, choose a random password or a password manager’s passphrase generator.'
+    : 'Generated in your browser. Use a unique password for every account.';
 }
 
 function setupPasswordGenerator() {
   // Attach event listeners
   document.getElementById('gen-btn').addEventListener('click', handlePwgen);
-  document.getElementById('pwgen-type').addEventListener('change', updatePwgenUI);
-  document.getElementById('pw-length').addEventListener('input', handlePwgen);
+  document.getElementById('pwgen-type').addEventListener('change', () => { updatePwgenUI(); handlePwgen(); });
+  document.getElementById('pwgen-form').addEventListener('submit', e => { e.preventDefault(); handlePwgen(); });
+  document.getElementById('pw-length').addEventListener('change', handlePwgen);
   [
     'pw-uppercase','pw-numbers','pw-symbols','pw-exclude-similar','pw-exclude-ambig','pw-require-all'
   ].forEach(id => {
@@ -384,52 +249,7 @@ function setupPasswordGenerator() {
   handlePwgen();
 }
 
-document.addEventListener('DOMContentLoaded', setupPasswordGenerator);
+if (document.getElementById('pwgen-form')) setupPasswordGenerator();
 
 
 // ===============================
-// Theme Toggle and Logo Logic
-// ===============================
-
-const themeToggle = document.getElementById('theme-toggle');
-const html = document.documentElement;
-let isDark = true; // Default to dark mode
-
-// --- Sets the logo image based on current theme ---
-function setLogoForTheme(theme) {
-  const logoImg = document.getElementById('logo-img');
-  if (logoImg) {
-    logoImg.src = theme === 'dark' ? 'media/logo-dark.png' : 'media/logo.png';
-  }
-}
-
-// --- Sets the emoji for the theme toggle button ---
-function setThemeToggleEmoji(theme) {
-  if (themeToggle) {
-    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-}
-
-// --- Theme toggle button click handler ---
-themeToggle?.addEventListener('click', () => {
-  isDark = !isDark;
-  const theme = isDark ? 'dark' : 'light';
-  html.setAttribute('data-theme', theme);
-  setLogoForTheme(theme);
-  setThemeToggleEmoji(theme);
-  localStorage.setItem('theme', theme);
-});
-
-// --- Set initial theme and logo on page load ---
-window.addEventListener('DOMContentLoaded', () => {
-  let theme = 'dark';
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    theme = savedTheme;
-    isDark = theme === 'dark';
-  }
-  html.setAttribute('data-theme', theme);
-  setLogoForTheme(theme);
-  setThemeToggleEmoji(theme);
-});
-
