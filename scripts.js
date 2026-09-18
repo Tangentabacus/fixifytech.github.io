@@ -14,6 +14,12 @@ function route(scroll = true) {
   const home = document.getElementById('home-page'), resources = document.getElementById('resources');
   if (!home || !resources) return;
   const id = location.hash.slice(1) || 'home';
+  if (id === 'main') {
+    closeMenu();
+    const main = document.getElementById('main');
+    if (scroll) { main.scrollIntoView({block:'start'}); main.focus({preventScroll:true}); }
+    return;
+  }
   home.hidden = id === 'resources'; resources.hidden = id !== 'resources';
   document.title = id === 'resources' ? 'Resources & Tools | Fixify Tech' : 'Fixify Tech | IT Solutions & Support in Anchorage, Alaska';
   document.querySelectorAll('.nav-links a').forEach(a => { if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
