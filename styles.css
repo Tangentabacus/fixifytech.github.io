@@ -378,6 +378,23 @@ p {
   margin-bottom:19px
 }
 
+.service-photo {
+  width:100%;
+  height:auto;
+  aspect-ratio:8 / 5;
+  object-fit:cover;
+  border-radius:var(--radius);
+  margin-bottom:24px
+}
+
+.service-photo-network {
+  object-position:center 20%
+}
+
+.service-photo-infrastructure {
+  object-position:center 35%
+}
+
 .service-item h3 {
   margin-bottom:14px
 }
